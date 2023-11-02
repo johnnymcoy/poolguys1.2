@@ -1,0 +1,67 @@
+.auth {
+    margin: 2rem auto;
+    max-width: 75vw;
+    width: 42rem;
+    height: 32rem;
+    padding: 1rem;
+    text-align: center;
+}
+
+/* .input{
+    border: 2px solid transparent;
+}
+
+.invalid{
+    border: 2px solid rgba(255, 0, 0, 0.566);
+} */
+/* .control {
+    margin-bottom: 0.5rem;
+} 
+  
+.control label {
+    display: block;
+    color: #616161;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+}
+  
+.control input {
+    display: block;
+    width: 20rem;
+    margin: auto;
+    border-radius: 4px;
+    padding: 0.25rem;
+    border: 1px solid #ccc;
+}
+.control textarea{
+    resize: none;
+    width: 20rem;
+    height: 10rem;
+}
+
+  
+.invalid label {
+    display: block;
+    color: #616161;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+}
+  
+.invalid input {
+    display: block;
+    width: 20rem;
+    margin: auto;
+    border-radius: 4px;
+    padding: 0.25rem;
+    border: 1px solid #ccc;
+}
+
+.invalid p {
+    color: var(--red-color);
+    margin: 0;
+    padding: 0.15rem;
+}
+
+.errorMessage{
+    height: 1rem;
+} */

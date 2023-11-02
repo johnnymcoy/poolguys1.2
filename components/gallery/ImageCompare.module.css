@@ -1,0 +1,144 @@
+.main{
+    /* margin: 10px 50px; */
+    width: 500px;
+    height: 500px;
+    display: flex;
+    position: relative;
+    /* z-index: 1000; */
+}
+.image{
+    user-select: none;
+    /* max-width: none; */
+    object-fit: cover;
+    /* display: flex; */
+}
+.image::selection{
+
+}
+
+.beforeAfterWrap {
+    /* width: 100%;
+    height: 100%; */
+    border-radius: 50%;
+    /* z-index: 1000; */
+
+    position: relative;
+    /* margin: auto */
+}
+/* .beforeAfterWrap::before {
+    float: left;
+    padding-top: 100%;
+    content: "";
+} */
+.beforeAfterWrap .image{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: block;
+    /* width: auto; */
+}
+.beforeAfterWrap .second{
+    position: absolute;
+    /* display: flex; */
+    max-width: none;
+    max-width: 500px;
+    width: 500px;
+    top: 0;
+    left: 0;
+    height: 100%;
+    overflow: hidden;
+}
+
+/* Seperator Line */
+.beforeAfterWrap .beforeAfterSeperator.horizontal {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    margin-left: -2px;
+    background: #fff;
+    cursor: ew-resize;
+}
+/* Seperator Line Vertical */
+.beforeAfterWrap .beforeAfterSeperator.vertical {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    height: 4px;
+    margin-top: -2px;
+    background: #fff;
+    cursor: ew-resize;
+}
+
+/* Center the circle */
+.beforeAfterWrap .beforeAfterSeperator.vertical:after {
+    left: 50%;
+}
+/* Center the circle */
+.beforeAfterWrap .beforeAfterSeperator.horizontal:after {
+    top: 50%;
+}
+/* Draw the Center Circle */
+.beforeAfterWrap .beforeAfterSeperator:after {
+    position: absolute;
+    /* z-index: 99999; */
+    width: 64px;
+    height: 64px;
+    margin: -32px 0 0 -32px;
+    content: "";
+    color: white;
+    font-weight: bold;
+    font-size: 36px;
+    text-align: center;
+    line-height: 64px;
+    background: #7ac3f1;
+    border: 1px solid #e7f3ff;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3), inset 0 2px 0 rgba(255, 255, 255, 0.5), inset 0 60px 50px -30px #637ba0;
+}
+  
+.resize{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height:50%;
+    overflow: hidden;
+}
+.resize.horizontal{
+    width: 50%;
+    height: 100%;
+}
+.resize.vertical{
+    height: 50%;
+    width: 100%;
+}
+.resize .image{
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    left: 0;
+}
+
+
+/* Center Arrows */
+.beforeAfterSeperatorImg{
+    width: 54px;
+    height: 54px;
+    position: absolute;
+    left: 50%;
+    margin-left: -27px;
+    margin-top: -27px;
+    z-index: 4;
+}
+
+.beforeAfterSeperatorImg.vertical{
+    left:50%
+}
+
+.beforeAfterSeperatorImg.horizontal{
+   top:50%
+}

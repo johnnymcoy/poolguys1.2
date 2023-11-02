@@ -1,0 +1,21 @@
+.main{
+    /* position: relative; */
+    /* display: grid; */
+    /* padding: 5% 10%; */
+    /* height: 100%;
+    width: 100%;
+    max-width: 100%;
+    justify-items: center;
+    align-items: center; */
+}
+
+/* @media (min-width: 68rem) {
+    .main{
+        display : flex;
+        align-items: flex-start;        
+        align-content: center;
+        left: 0;
+        right: 0;
+        padding: 5% 20%;
+    }    
+} */
