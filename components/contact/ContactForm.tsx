@@ -13,10 +13,13 @@ import CSS from './ContactForm.module.css';
 import ReCAPTCHA from "react-google-recaptcha";
 import { Box } from "../styles/box";
 import { ModalConfirm } from "../modal/ModalConfirm";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/store";
 
 function ContactForm(){
+    const {title, description, mobile, require_captcha} = useSelector((state: RootState) => state.config.contact);
 
-    const {title, description, mobile, require_captcha} = config.contact;
+    // const {title, description, mobile, require_captcha} = config.contact;
 
     const fullDescription = description.replace("*", mobile);
 
