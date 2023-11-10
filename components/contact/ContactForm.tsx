@@ -1,24 +1,17 @@
 // Imports
 import {FormEvent, useState} from "react"
 import useInput from "../../hooks/useInput";
-import {BoxIcon} from '../icons/BoxIcon';
-import {FeatureIcon} from '../icons/FeatureIcon';
 import {Flex} from '../styles/flex';
-import {Button, Card, Input,  Divider, StyledDropdownSection, StyledInputLabel, Text, Textarea, Spacer, useTheme, Loading, Popover} from '@nextui-org/react';
-// import {Card, CardHeader, CardBody, CardFooter} from "@nextui-org/card";
-
-import config from "@/api/config/config.json";
+import {Button, Card, Input,  Text, Textarea, Spacer, useTheme, Loading} from '@nextui-org/react';
 
 import CSS from './ContactForm.module.css';
 import ReCAPTCHA from "react-google-recaptcha";
-import { Box } from "../styles/box";
 import { ModalConfirm } from "../modal/ModalConfirm";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
 
 function ContactForm(){
     const {title, description, mobile, require_captcha} = useSelector((state: RootState) => state.config.contact);
-
     // const {title, description, mobile, require_captcha} = config.contact;
 
     const fullDescription = description.replace("*", mobile);
@@ -72,7 +65,7 @@ function ContactForm(){
 
     function formSubmitHandler(event : FormEvent){
         event.preventDefault();
-
+        console.log(require_captcha)
         const sendData = {
             name: enteredName,
             email: enteredEmail,
@@ -195,9 +188,10 @@ function ContactForm(){
                     <Textarea status={messageStatus} labelPlaceholder="Message" bordered={isDark} value={enteredMessage} onBlur={messageBlurHandler} onChange={messageChangedHandler} placeholder="Hey Lets get in touch" minRows={4} maxRows={10} cols={36} id='message' name="message" aria-label="Message"/>
                 </Flex>
                 <Spacer />
+                {require_captcha && 
                 <Flex css={{justifyContent: "center", py: '$4', gap: '$5',}}>
                     <ReCAPTCHA  sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!} onChange={setCaptcha} />
-                </Flex>
+                </Flex>}
                 <Spacer />
                 <Flex css={{justifyContent: "center", py: '$8', gap: '$5',}}>
                 <Button  size="lg" className={CSS.submit} type="submit" /*color={sendStatus}*/>
@@ -215,7 +209,6 @@ function ContactForm(){
         </Flex>
     </Flex>
 </Flex>
-    {/* <Divider css={{position: 'absolute', inset: '0p', left: '0', mt: '$5'}}/> */}
 </>
 );}
 

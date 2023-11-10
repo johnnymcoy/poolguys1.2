@@ -1,26 +1,14 @@
-import config from "@/api/config/config.json";
 import Image from "next/image";
 import Link from "next/link";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/store";
 
 const Logo = ({ src }: { src?: string }) => {
-    // destructuring items from config object
-    const {
-      logo,
-      logo_darkmode,
-      logo_width,
-      logo_height,
-      logo_text,
-      title,
-    }: {
-      logo: string;
-      logo_darkmode: string;
-      logo_width: any;
-      logo_height: any;
-      logo_text: string;
-      title: string;
-    } = config.site;
+    const {logo, logo_darkmode,  logo_width,  logo_height, logo_text,title, }: 
+    { logo: string; logo_darkmode: string;  logo_width: any; logo_height: any; logo_text: string; title: string;}
+     = useSelector((state: RootState) => state.config.site);
   
     const { theme, resolvedTheme } = useTheme();
     const [mounted, setMounted] = useState(false);

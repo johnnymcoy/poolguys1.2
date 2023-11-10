@@ -3,9 +3,9 @@ import React from 'react';
 import {useTheme as useNextTheme} from 'next-themes';
 import {useTheme} from '@nextui-org/react';
 import Logo from './logo';
-import menuConfig from "@/api/config/menu.json";
-import config from "@/api/config/config.json";
 import { useRouter } from 'next/router';
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/store";
 
 interface NavProps {
     showCopyModal?: () => void
@@ -16,12 +16,14 @@ export const Nav = ({showCopyModal} : NavProps) => {
    const {isDark, type} = useTheme();
    const router = useRouter();
 
-   const menuItems = menuConfig.main;
-   const {phone_text, theme_switch, bPhone} = menuConfig.nav;
+   const menuItems = useSelector((state: RootState) => state.config.menu.main);
+//    const menuItems = menuConfig.main;
+    const {phone_text, theme_switch, bPhone} = useSelector((state: RootState) => state.config.menu.nav);
+//    const {phone_text, theme_switch, bPhone} = menuConfig.nav;
+    const {mobile} = useSelector((state: RootState) => state.config.contact);
+//    const {mobile} = config.contact;
 
-   const {mobile} = config.contact;
-
-   function numberClickedHandler(e : any){
+    function numberClickedHandler(e : any){
         console.log(e.target)
         const copyText : string = e.target.innerText;
         const numberText : string = copyText.slice(2).replaceAll(" ", "");

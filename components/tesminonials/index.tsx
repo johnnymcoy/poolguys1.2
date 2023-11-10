@@ -1,11 +1,13 @@
-import {Button, Card, Divider, Text} from '@nextui-org/react';
+import {Card, Divider, Text} from '@nextui-org/react';
 import React from 'react';
 import {QuotesIcon} from '../icons/QuotesIcon';
 import {Flex} from '../styles/flex';
-import config from "@/api/config/config.json";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/store";
 
 export const Testimonials = () => {
-    const testimonials = config.testimonials;
+    const testimonials = useSelector((state: RootState) => state.config.testimonials);
+    // const testimonials = config.testimonials;
 
    return (
 <>

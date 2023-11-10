@@ -4,10 +4,12 @@ import {BoxIcon} from '../icons/BoxIcon';
 import {FeatureIcon} from '../icons/FeatureIcon';
 import {Box} from '../styles/box';
 import {Flex} from '../styles/flex';
-import config from "@/api/config/config.json";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/store";
 
 export const Features1 = () => {
-    const aboutInfo = config.about;
+    const aboutInfo = useSelector((state: RootState) => state.config.about);
+    // const aboutInfo = config.about;
 
    return (
 <>

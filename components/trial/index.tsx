@@ -1,13 +1,14 @@
 import {Button, Divider, Link, Text} from '@nextui-org/react';
 import React from 'react';
 import {Flex} from '../styles/flex';
-import config from "@/api/config/config.json";
-import menuConfig from "@/api/config/menu.json";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/store";
 
 export const Trial = () => {
-
-    const {action_call} = config.contact;
-    const contact = menuConfig.main.find((element) => element.name === "Contact");
+    const {action_call} = useSelector((state: RootState) => state.config.contact);
+    // const {action_call} = config.contact;
+    const contact = useSelector((state: RootState) => state.config.menu.main.find((element) => element.name === "Contact"));
+    // const contact = menuConfig.main.find((element) => element.name === "Contact");
 
    return (
 <>

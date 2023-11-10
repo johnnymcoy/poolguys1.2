@@ -3,11 +3,13 @@ import React from 'react';
 import {BoxIcon} from '../icons/BoxIcon';
 import {Box} from '../styles/box';
 import {Flex} from '../styles/flex';
-import config from "@/api/config/config.json";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/store";
 
 
 export const Features3 = () => {
-    const services = config.services;
+    const services = useSelector((state: RootState) => state.config.services);
+    // const services = config.services;
 
    return (
 <>

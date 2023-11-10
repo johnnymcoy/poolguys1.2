@@ -2,10 +2,12 @@ import {Button, Divider, Text} from '@nextui-org/react';
 import React from 'react';
 import {Box} from '../styles/box';
 import {Flex} from '../styles/flex';
-import config from "@/api/config/config.json";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/store";
 
 export const Statistics = () => {
-    const {list, enabled, title, description } = config.stats;
+    const {list, enabled, title, description} = useSelector((state: RootState) => state.config.stats);
+    // const {list, enabled, title, description } = config.stats;
 
     if(!enabled){return(<div></div>)};
 

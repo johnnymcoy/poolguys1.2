@@ -6,6 +6,8 @@ if (in_array($origin, $allowed_origins)) {
     header('Access-Control-Allow-Origin: ' . $origin);
 }
 header('Content-Type: application/json'); // Assuming you're sending back JSON
+header('Access-Control-Allow-Methods: POST, GET, OPTIONS');
+header('Access-Control-Allow-Headers: Content-Type');
 
 $file = 'config/config.json';
 $jsonString = file_get_contents('php://input');

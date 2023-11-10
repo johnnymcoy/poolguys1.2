@@ -1,15 +1,15 @@
-import {Button, Card, Divider, Grid, Spacer, Text} from '@nextui-org/react';
+import {Card, Divider, Grid, Spacer, Text} from '@nextui-org/react';
 import React from 'react';
 import {Flex} from '../styles/flex';
 import { ImageCompare } from '../gallery/ImageCompare';
 import CSS from "./BeforeAfter.module.css";
-import { Box } from '../styles/box';
-import config from "@/api/config/config.json";
+import { RootState } from '../../store/store';
+import { useSelector } from 'react-redux';
 
 
 export const BeforeAfter = () => {
-
-    const {title, description, photos, enabled, photoDescription, photoTitle} = config.comparison;
+    const {title, description, photos, enabled, photoDescription, photoTitle} = useSelector((state: RootState) => state.config.comparison);
+    // const {title, description, photos, enabled, photoDescription, photoTitle} = config.comparison;
 
 
     const bEnabled = (!enabled || photos.length === 0);

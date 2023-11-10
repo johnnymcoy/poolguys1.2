@@ -14,7 +14,7 @@ export const ModalLogin = () => {
    const handler = () => setVisible(true);
    const closeHandler = () => {
       setVisible(false);
-      console.log('closed');
+    //   console.log('closed');
    };
    return (
       <div>

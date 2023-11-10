@@ -1,12 +1,10 @@
 import nodemailer from 'nodemailer';
-import config from "@/api/config/config.json";
 
-const { email } = config.contact;
-const { title } = config.site;
 
 const sendEmail = async (req, res) => {
   if (req.method === 'POST') {
     const { name, email : customerEmail, message } = req.body;
+
 
     // Create a Nodemailer transporter
     const transporter = nodemailer.createTransport({
@@ -20,11 +18,11 @@ const sendEmail = async (req, res) => {
 
     // Define the email content
     const mailOptions = {
-        from: email,
-        to: email,
-        subject: `[${title}] New Message From ${name}`,
+        from: process.env.EMAIL_ADDRESS,
+        to: process.env.EMAIL_ADDRESS,
+        subject: `[${process.env.EMAIL_TITLE}] New Message From ${name}`,
         text: 
-`New Message sent from Contact page [${title}]
+`New Message sent from Contact page [${process.env.EMAIL_TITLE}]
 Message sent from: ${name}, Email: ${customerEmail}
 Message: ${message}`,};
 

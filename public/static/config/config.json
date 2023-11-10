@@ -25,12 +25,12 @@
         {
             "text" : "Affordable Prices"
         }
-    ]
-  },
-  "images" : {
-    "home_image" : {
-        "src" : "/static/images/photos/pool-photo-06.webp",
-        "alt" : "Man cleaning pool near oceanside"
+    ],
+    "images" : {
+      "home_image" : {
+          "src" : "/static/images/photos/pool-photo-06.webp",
+          "alt" : "Man cleaning pool near oceanside"
+      }
     }
   },
   "about" : {
@@ -164,36 +164,36 @@
         }
 
     ]
-},
+    },
     "contact" : {
-    "email" : "mail@Curtisbucciol.com",
-    "mobile" : "0488 013 344",
-    "title" :"Get in Touch with The Pool Guys",
-    "action_call" : "Entrust your pool's care with the Pool Guys, where quality service and customer satisfaction are our pledges",
-    "description" : "At The Pool Guys, your crystal clear pool is just a call away! Whether you need a routine cleaning, maintenance, or a complete pool makeover, we are here to assist you. Reach out to us by filling out the contact form below or call us at *. Your backyard oasis awaits.",
-    "require_captcha" : true
-},
+        "email" : "mail@Curtisbucciol.com",
+        "mobile" : "0488 013 344",
+        "title" :"Get in Touch with The Pool Guys",
+        "action_call" : "Entrust your pool's care with the Pool Guys, where quality service and customer satisfaction are our pledges",
+        "description" : "At The Pool Guys, your crystal clear pool is just a call away! Whether you need a routine cleaning, maintenance, or a complete pool makeover, we are here to assist you. Reach out to us by filling out the contact form below or call us at *. Your backyard oasis awaits.",
+        "require_captcha" : true
+    },
     "FAQ": {
-    "title" : "FAQ",
-    "subtitle" : "You Have Questions?",
-    "enabled" : true,
-    "list" :[
-        {
-            "question" : "How often should I have my pool serviced?",
-            "answer" : "For optimal water quality and cleanliness, we recommend a monthly service. However, during peak summer months, consider bi-monthly check-ups to ensure your pool remains in pristine condition"
-        },
-        {
-            "question" : "Do you offer emergency repair services?",
-            "answer" : "Yes! We understand unexpected issues can arise. The Pool Guys offer emergency repair services to address any urgent pool concerns"
-        },
-        {
-            "question" : "Are the cleaning chemicals you use safe for kids and pets?",
-            "answer" : "Absolutely! We prioritize the safety of our clients, using eco-friendly and non-toxic chemicals that are safe for both kids and pets"
-        },
-        {
-            "question" : "Can I schedule regular maintenance in advance?",
-            "answer" : "Yes, you can! We offer flexible scheduling options, allowing you to book regular maintenance sessions in advance to ensure your pool always stays in top condition"
-        }]
+        "title" : "FAQ",
+        "subtitle" : "You Have Questions?",
+        "enabled" : true,
+        "list" :[
+            {
+                "question" : "How often should I have my pool serviced?",
+                "answer" : "For optimal water quality and cleanliness, we recommend a monthly service. However, during peak summer months, consider bi-monthly check-ups to ensure your pool remains in pristine condition"
+            },
+            {
+                "question" : "Do you offer emergency repair services?",
+                "answer" : "Yes! We understand unexpected issues can arise. The Pool Guys offer emergency repair services to address any urgent pool concerns"
+            },
+            {
+                "question" : "Are the cleaning chemicals you use safe for kids and pets?",
+                "answer" : "Absolutely! We prioritize the safety of our clients, using eco-friendly and non-toxic chemicals that are safe for both kids and pets"
+            },
+            {
+                "question" : "Can I schedule regular maintenance in advance?",
+                "answer" : "Yes, you can! We offer flexible scheduling options, allowing you to book regular maintenance sessions in advance to ensure your pool always stays in top condition"
+            }]
     },
     "menu" : {
         "main": [

@@ -10,12 +10,13 @@ import Document, {
 import { CssBaseline } from "@nextui-org/react";
 import {globalStyles} from '../styles/global.stitches';
 
+
 class MyDocument extends Document {
    static async getInitialProps(
       ctx: DocumentContext
    ): Promise<DocumentInitialProps> {
       const initialProps = await Document.getInitialProps(ctx);
-      return {
+        return {
          ...initialProps,
          styles: React.Children.toArray([initialProps.styles]),
       };

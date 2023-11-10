@@ -1,18 +1,19 @@
-import {Button, Divider, Input,Image, Text} from '@nextui-org/react';
+import {Button, Divider, Image, Text} from '@nextui-org/react';
 import React from 'react';
 import {CheckIcon} from '../icons/CheckIcon';
 import {Box} from '../styles/box';
 import {Flex} from '../styles/flex';
-import config from "@/api/config/config.json";
 import Link from 'next/link';
-import menuConfig from "@/api/config/menu.json";
-// import Image from 'next/image';
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/store";
 
 export const Hero = () => {
-    const {title, subtitle, description, points} = config.home;
-    const {home_image} = config.images;
-
-    const contact = menuConfig.main.find((element) => element.name === "Contact");
+    const {title, subtitle, description, points} = useSelector((state: RootState) => state.config.home);
+    // const {title, subtitle, description, points} = config.home;
+    const {home_image} = useSelector((state: RootState) => state.config.home.images);
+    // const {home_image} = config.images;
+    const contact = useSelector((state: RootState) => state.config.menu.main.find((element) => element.name === "Contact"));
+    // const contact = menuConfig.main.find((element) => element.name === "Contact");
 
    return (
 <>

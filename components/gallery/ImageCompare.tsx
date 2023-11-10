@@ -1,9 +1,9 @@
-import {Card, Divider, Text} from '@nextui-org/react';
 import React, { useState, useEffect, useRef, MouseEvent, TouchEvent } from 'react';
-import {Box} from '../styles/box';
-import config from "@/api/config/config.json";
+// import config from "@/api/config/config.json";
 import CSS from "./ImageCompare.module.css";
-import Image from 'next/image';
+// import Image from 'next/image';
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/store";
 
 
 interface ImageCompareProps {
@@ -24,7 +24,8 @@ export const ImageCompare: React.FC<ImageCompareProps> = ({
         cursor = "pointer",
         vertical = false,}: ImageCompareProps)  => {
 
-    const services = config.services;
+    const services = useSelector((state: RootState) => state.config.services);
+    // const services = config.services;
 
 
     const separatorRef = useRef<HTMLDivElement>(null);
@@ -38,7 +39,6 @@ export const ImageCompare: React.FC<ImageCompareProps> = ({
 
     
     const handleEvent = (e: MouseEvent | TouchEvent) => {
-        console.log("event")
         return supportsTouch ? (e as TouchEvent).changedTouches[0] : (e as MouseEvent);
     }
     
@@ -47,7 +47,6 @@ export const ImageCompare: React.FC<ImageCompareProps> = ({
         const down = () => setIsDown(false);
     
         const dragStart = (e: any) => {
-            console.log("Drag")
             const event = handleEvent(e);
             const separator = separatorRef.current!;
             setOffset([
@@ -71,19 +70,18 @@ export const ImageCompare: React.FC<ImageCompareProps> = ({
         };
         const handleVertical = (yPos: number) => {
             const isOutOfRangeY = yPos + offset[1] > 475 || yPos + offset[1] < 0;
-            console.log("Is Out of RangeY: " + isOutOfRangeY)
+            // console.log("Is Out of RangeY: " + isOutOfRangeY)
             if (isOutOfRangeY) return;
-            console.log("Y Range" + (yPos + offset[1]) + "px")
+            // console.log("Y Range" + (yPos + offset[1]) + "px")
             separatorRef.current!.style.top = yPos + offset[1] + "px";
             resizeRef.current!.style.height = yPos + offset[1] + "px";
         };
         
         const handleHorizontal = (xPos: number) => {
             const isOutOfRangeX = xPos + offset[0] > 475 || xPos + offset[0] < 0; //xPos + offset[0] > minWidth || xPos + offset[0] < 0
-            console.log("Is Out of RangeX: " +isOutOfRangeX)
+            // console.log("Is Out of RangeX: " +isOutOfRangeX)
             if (isOutOfRangeX) return;
-            // console.log(isOutOfRangeX)
-            console.log("X Range" + (xPos + offset[0]) + "px")
+            // console.log("X Range" + (xPos + offset[0]) + "px")
             separatorRef.current!.style.left = xPos + offset[0] + "px";
             resizeRef.current!.style.width = xPos + offset[0] + "px";
         };

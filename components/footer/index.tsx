@@ -1,21 +1,22 @@
 import {Divider, Text} from '@nextui-org/react';
 import React from 'react';
-// import {AcmeLogo} from '../navbar/logo';
 import {Box} from '../styles/box';
 import {Flex} from '../styles/flex';
 import Logo from '../navbar/logo';
-import config from "@/api/config/menu.json";
 import Link from 'next/link';
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/store";
 
 interface FooterProps {
     bDivider? : boolean;
 }
 
 export const Footer = ({bDivider = true}: FooterProps) => {
+    const {copyright, terms, terms_link, bTerms, bPrivacyPolicy, privacy, privacy_link} = useSelector((state: RootState) => state.config.menu.footer);
 
-    const {copyright, terms, terms_link, bTerms, bPrivacyPolicy, privacy, privacy_link} : 
-    { copyright: string; terms: string, terms_link: string, bTerms: boolean, bPrivacyPolicy: boolean, privacy: string, privacy_link: string} 
-    = config.footer;
+    // const {copyright, terms, terms_link, bTerms, bPrivacyPolicy, privacy, privacy_link} : 
+    // { copyright: string; terms: string, terms_link: string, bTerms: boolean, bPrivacyPolicy: boolean, privacy: string, privacy_link: string} 
+    // = config.footer;
   
 
    return (
