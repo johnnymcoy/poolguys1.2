@@ -14,7 +14,7 @@ export const fetchConfig = createAsyncThunk(
     }
 );
 
-export const postConfig = createAsyncThunk(
+export const postConfig = createAsyncThunk<any, any>(
     'config/postConfig',
     async (dataToWrite, { rejectWithValue }) => {
       try {
