@@ -50,7 +50,7 @@ export const BeforeAfter = () => {
                 </Grid>
                 </Grid.Container>
             </Card.Header>
-            <Card.Body css={{ py: '$6' }}>
+            <Card.Body css={{ py: '$6', overflow: "hidden" }}>
                 <ImageCompare   
                     firstImgSrc={item.beforeSrc}
                     secondImgSrc={item.afterSrc}

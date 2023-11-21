@@ -30,8 +30,9 @@ const Logo = ({ src }: { src?: string }) => {
             alt={title}
             priority
             style={{
-              height: logo_height.replace("px", "") + "px",
-              width: logo_width.replace("px", "") + "px",
+                minWidth: "200px",
+                height: logo_height.replace("px", "") + "px",
+                width: logo_width.replace("px", "") + "px",
             }}
           />
         ) : logo_text ? (

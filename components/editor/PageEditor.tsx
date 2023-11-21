@@ -8,20 +8,11 @@ import { RootState } from "../../store/store";
 import { postConfig } from "../../store/config-store";
 import { useState } from "react";
 import ContactEdit, { SiteInfo, Status } from "./ContactEdit";
-
-// const sendSiteInfo = {
-//     title: "Pool Guys",
-//     base_url: "https://poolguys.com.au",
-//     base_path: "/",
-//     trailing_slash: false,
-//     favicon: "/images/favicon.png",
-//     logo: "/static/images/logo.webp",
-//     logo_darkmode: "/static/images/logo-darkmode.webp",
-//     logo_width: "200",
-//     logo_height: "60",
-//     logo_text: "Pool Guys"
-// }
-
+import ServicesEdit, { ServicesInfo } from "./ServicesEdit";
+import TestimonialsEdit, { TestimonialsInfo } from "./TestimonialsEdit";
+import QuestionsEdit, { QuestionsInfo } from "./FaqEdit";
+import StatEdit, { StatInfo } from "./StatsEdit";
+import AboutEdit, { AboutInfo } from "./AboutEdit";
 
 export default function PageEditor() {
     const { data: session } = useSession()
@@ -54,6 +45,11 @@ export default function PageEditor() {
     };
 
     const [contactLoading, setContactLoading] = useState<Status>("idle");
+    const [servicesLoading, setServicesLoading] = useState<Status>("idle");
+    const [testimonialsLoading, setTestimonialsLoading] = useState<Status>("idle");
+    const [questionsLoading, setQuestionsLoading] = useState<Status>("idle");
+    const [statsLoading, setStatsLoading] = useState<Status>("idle");
+    const [aboutLoading, setAboutLoading] = useState<Status>("idle");
 
     function submitContactHandler(data: SiteInfo){
         setContactLoading("loading");
@@ -61,14 +57,49 @@ export default function PageEditor() {
         setTimeout(submitHandler, 2000)
     }
 
-    function submitHandler(){
-        setContactLoading("complete");
-        dispatch(postConfig(sendData))
+    function submitAboutHandler(data: AboutInfo){
+        setAboutLoading("loading");
+        sendData.about = data;
+        setTimeout(submitHandler, 2000)
     }
 
-
     
+    
+    function submitServicesHandler(data: ServicesInfo){
+        setServicesLoading("loading");
+        sendData.services = data;
+        setTimeout(submitHandler, 2000)
+    }
 
+    function submitTestimonialsHandler(data: TestimonialsInfo){
+        setTestimonialsLoading("loading");
+        sendData.testimonials = data;
+        setTimeout(submitHandler, 2000)
+    }
+    function submitStatsHandler(data: StatInfo){
+        setStatsLoading("loading");
+        sendData.stats = data;
+        setTimeout(submitHandler, 2000)
+    }
+    function submitQuestionsHandler(data: QuestionsInfo){
+        setQuestionsLoading("loading");
+        sendData.FAQ = data;
+        setTimeout(submitHandler, 2000)
+    }
+    
+    
+    function submitHandler(){
+        setContactLoading("complete");
+        setServicesLoading("complete");
+        setTestimonialsLoading("complete");
+        setQuestionsLoading("complete");
+        setStatsLoading("complete");
+        setAboutLoading("complete");
+        console.log(sendData);
+        dispatch(postConfig(sendData))
+    }
+    
+    
 if(session){
     return (
 <Flex
@@ -81,33 +112,18 @@ if(session){
     <Text h1
         css={{
         width: '100%',
-        // color: '$accents8',
         textAlign: 'center',}}>
             Admin Dashboard
     </Text>
         {/* Web stats  */}
         <ContactEdit sendData={submitContactHandler} complete={contactLoading} />
-    {/* <Card css={{ p: '10px', mw: '550px', m: "0", gap: "$2" }}>
-        <Card.Header>
-            <Text h3 css={{textAlign: "center", width: "100%"}}>Contact Info</Text>
-        </Card.Header>
-        <Input type={"email"} clearable bordered label={"Email"} placeholder={contactInfo.email} value={emailInput.bindings.value} onChange={emailInput.bindings.onChange}/>
-        <Text>Previous: {contactInfo.email}</Text>
-        <Input clearable bordered label={"Mobile"} type={"text"} placeholder={contactInfo.mobile} value={mobileInput.bindings.value} onChange={mobileInput.bindings.onChange}/>
-        <Text>Previous: {contactInfo.mobile}</Text>
-        <Input clearable bordered label={"Title"} placeholder={contactInfo.title}/>
-        <Text>Previous: {contactInfo.title}</Text>
-        <Input clearable bordered label={"Action Call"} placeholder={contactInfo.action_call}/>
-        <Text>Previous: {contactInfo.action_call}</Text>
-        <Input clearable bordered label={"Description"} placeholder={contactInfo.description}/>
-        <Text>Previous: {contactInfo.description}</Text>
-        <Text>Require Capcha when sending email</Text>
-        <Switch size="sm" initialChecked={contactInfo.require_captcha}/>
-        <Text>Previous: {contactInfo.require_captcha ? "true" : "false"}</Text>
-        <Button onPress={submitContactInfo}>Save Changes</Button>  
-    </Card> */}
+        <AboutEdit sendData={submitAboutHandler} complete={aboutLoading}/>
+        <ServicesEdit sendData={submitServicesHandler} complete={servicesLoading} />
+        <TestimonialsEdit sendData={submitTestimonialsHandler} complete={testimonialsLoading}/>
+        <QuestionsEdit sendData={submitQuestionsHandler} complete={questionsLoading} />
+        <StatEdit sendData={submitStatsHandler} complete={statsLoading} />
 
-    <Card css={{ p: '10px', mw: '550px', m: "0" }}>
+    {/* <Card css={{ p: '10px', mw: '550px', m: "0" }}>
         <Card.Header>
             <Text h3 css={{textAlign: "center", width: "100%"}}>Home Page</Text>
         </Card.Header>
@@ -117,30 +133,18 @@ if(session){
         {homeInfo.points.map((item, index) =>
             <Input clearable bordered key={"point" + index} label={"Point "+ (index + 1)} placeholder={item.text}/>
         )}
-    </Card>
-    <Card css={{ p: '10px', mw: '550px', m: "0" }}>
+    </Card> */}
+    {/* <Card css={{ p: '10px', mw: '550px', m: "0" }}>
         <Card.Header>
             <Text h3 css={{textAlign: "center", width: "100%"}}>About Page</Text>
         </Card.Header>
         <Input clearable bordered label={"About Intro"} placeholder={aboutInfo.intro}/>
-    </Card>
-    <Card css={{ p: '10px', mw: '550px', m: "0" }}>
-        <Card.Header>
-            <Text h3 css={{textAlign: "center", width: "100%"}}>Services Page</Text>
-        </Card.Header>
-        {servicesInfo.list.map((item, index) =>
-        <Box key={"Service" + index} css={{width: "100%",}}>
-            {"Service " + (index + 1)}
-            <Input clearable bordered label={"Title"} placeholder={item.title} css={{width: "100%"}}/>
-            <Input clearable bordered label={"Description"} placeholder={item.description} css={{width: "100%"}}/>
-        </Box>
-        )}
-    </Card>
-    <Card css={{ p: '10px', mw: '550px', m: "0" }}>
+    </Card> */}
+    {/* <Card css={{ p: '10px', mw: '550px', m: "0" }}>
         <Card.Header>
             <Text h3 css={{textAlign: "center", width: "100%"}}>Stats</Text>
         </Card.Header>
-        {/* <Button size={"sm"} auto >Disable</Button> */}
+        <Button size={"sm"} auto >Disable</Button>
         <Input clearable bordered label={"Stats Title"} placeholder={statsInfo.title}/>
         <Input clearable bordered label={"Stats Description"} placeholder={statsInfo.description}/>
         {statsInfo.list.map((item, index) =>
@@ -150,29 +154,12 @@ if(session){
             <Input clearable bordered label={"Description"} placeholder={item.description} css={{width: "100%"}}/>
         </Box>
         )}
-    </Card>
-    <Card css={{ p: '10px', mw: '550px', m: "0" }}>
-        <Card.Header>
-            <Text h3 css={{textAlign: "center", width: "100%"}}>Testimonials</Text>
-        </Card.Header>
-        {/* <Button size={"sm"} auto >Disable</Button> */}
-        <Input clearable bordered label={"Stats Title"} placeholder={testimonialsInfo.title}/>
-        <Input clearable bordered label={"Stats Subtitle"} placeholder={testimonialsInfo.subtitle}/>
-        <Input clearable bordered label={"Stats Description"} placeholder={testimonialsInfo.description}/>
-        {testimonialsInfo.list.map((item, index) =>
-        <Box key={"testimonial Stat " +index} css={{width: "100%",}}>
-            {"Stat " + (index + 1)}
-            <Input clearable bordered label={"Name"} placeholder={item.name} css={{width: "100%"}}/>
-            <Input clearable bordered label={"Description"} placeholder={item.description} css={{width: "100%"}}/>
-            <Input clearable bordered label={"Location"} placeholder={item.location} css={{width: "100%"}}/>
-        </Box>
-        )}
-    </Card>
-    <Card css={{ p: '10px', mw: '550px', m: "0" }}>
+    </Card> */}
+    {/* <Card css={{ p: '10px', mw: '550px', m: "0" }}>
         <Card.Header>
             <Text h3 css={{textAlign: "center", width: "100%"}}>FAQ</Text>
         </Card.Header>
-        {/* <Button size={"sm"} auto >Disable</Button> */}
+        <Button size={"sm"} auto >Disable</Button>
         <Input clearable bordered label={"FAQ Title"} placeholder={faqInfo.title}/>
         <Input clearable bordered label={"FAQ Subtitle"} placeholder={faqInfo.subtitle}/>
         {faqInfo.list.map((item, index) =>
@@ -182,12 +169,12 @@ if(session){
             <Input clearable bordered label={"Answer"} placeholder={item.answer} css={{width: "100%"}}/>
         </Box>
         )}
-    </Card>
-    <Card css={{ p: '10px', mw: '550px', m: "0" }}>
+    </Card> */}
+    {/* <Card css={{ p: '10px', mw: '550px', m: "0" }}>
         <Card.Header>
             <Text h3 css={{textAlign: "center", width: "100%"}}>Comparision Images</Text>
         </Card.Header>
-    </Card>
+    </Card> */}
 
 
     {/* <h3>Edit/Remove Page</h3> 

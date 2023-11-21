@@ -41,6 +41,7 @@ export const Nav = ({showCopyModal} : NavProps) => {
 <Navbar isBordered variant={"sticky"} 
     css={{ '& .nextui-navbar-container': //'overflow': 'hidden', 
     { background: '$background', borderBottom: 'none', boxShadow: "rgba(27, 31, 35, 0.06) 0px 1px 0px",
+        
         // position: "fixed", top: 0, width: "100%"
     },background: '$background' }}
     >
@@ -87,7 +88,7 @@ export const Nav = ({showCopyModal} : NavProps) => {
         {/* Call Now Button */}
         <Navbar.Content>
         {bPhone && 
-        <Navbar.Content id={"CallButtons"}>
+        <Navbar.Content hideIn={'xs'} id={"CallButtons"}>
             <Navbar.Item hideIn={'sm'} id={"CallNow"}>
                 <Button auto flat href="#" onPress={numberClickedHandler}>
                     {phone_text}

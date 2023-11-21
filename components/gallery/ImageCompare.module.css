@@ -1,7 +1,6 @@
 .main{
-    /* margin: 10px 50px; */
-    width: 500px;
-    height: 500px;
+    /* width: 500px;
+    height: 500px; */
     display: flex;
     position: relative;
     /* z-index: 1000; */
@@ -13,6 +12,17 @@
     /* display: flex; */
 }
 .image::selection{
+
+}
+
+.nextImage{
+    user-select: none;
+    object-fit: fill;
+    pointer-events:none;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* overflow: hidden; */
 
 }
 
@@ -35,6 +45,7 @@
     height: 100%;
     position: relative;
     display: block;
+    z-index: -999999;
     /* width: auto; */
 }
 .beforeAfterWrap .second{
@@ -43,6 +54,7 @@
     max-width: none;
     max-width: 500px;
     width: 500px;
+
     top: 0;
     left: 0;
     height: 100%;
@@ -59,6 +71,7 @@
     margin-left: -2px;
     background: #fff;
     cursor: ew-resize;
+    z-index: 999999999999999;
 }
 /* Seperator Line Vertical */
 .beforeAfterWrap .beforeAfterSeperator.vertical {
@@ -70,18 +83,19 @@
     margin-top: -2px;
     background: #fff;
     cursor: ew-resize;
+    z-index: 999999999999999;
 }
 
 /* Center the circle */
-.beforeAfterWrap .beforeAfterSeperator.vertical:after {
+.beforeAfterWrap .beforeAfterSeperator.vertical::after {
     left: 50%;
 }
 /* Center the circle */
-.beforeAfterWrap .beforeAfterSeperator.horizontal:after {
+.beforeAfterWrap .beforeAfterSeperator.horizontal::after {
     top: 50%;
 }
 /* Draw the Center Circle */
-.beforeAfterWrap .beforeAfterSeperator:after {
+.beforeAfterWrap .beforeAfterSeperator::after {
     position: absolute;
     /* z-index: 99999; */
     width: 64px;
@@ -96,8 +110,11 @@
     background: #7ac3f1;
     border: 1px solid #e7f3ff;
     border-radius: 50%;
+    cursor: cursor;
     transition: all 0.3s ease;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3), inset 0 2px 0 rgba(255, 255, 255, 0.5), inset 0 60px 50px -30px #637ba0;
+    /* z-index: 999999999999999; */
+
 }
   
 .resize{
@@ -133,6 +150,8 @@
     margin-left: -27px;
     margin-top: -27px;
     z-index: 4;
+    z-index: 999999999999999;
+
 }
 
 .beforeAfterSeperatorImg.vertical{

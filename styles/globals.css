@@ -22,5 +22,6 @@ body {
 }
 
 img{
+    object-fit:fill!important;
     /* max-width: none; */
 }

@@ -7,6 +7,7 @@ import {Trial} from '../components/trial';
 import { useDispatch} from "react-redux";
 import { useEffect } from 'react';
 import { fetchConfig } from '../store/config-store';
+import { BeforeAfter } from '@/components/features/BeforeAfter';
 
 const Home: NextPage = () => {
     const dispatch = useDispatch();
@@ -18,6 +19,7 @@ const Home: NextPage = () => {
    return (
 <div className="content">
     <Hero />
+    <BeforeAfter />
     <Testimonials />
     <Statistics />
     <Faq />

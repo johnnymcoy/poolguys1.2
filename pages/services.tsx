@@ -17,7 +17,7 @@ const Home: NextPage = () => {
    return (
 <Layout>
     <Features3 />
-    <BeforeAfter />
+    {/* <BeforeAfter /> */}
     <Faq />
     <Trial />
 </Layout>
