@@ -1,5 +1,5 @@
 <?php
-$allowed_origins = ['https://poolguys.vercel.app', 'http://localhost:3000'];
+$allowed_origins = ['https://poolguys.vercel.app', 'http://localhost:3000', '76.76.21.61:443'];
 $origin = isset($_SERVER['HTTP_ORIGIN']) ? $_SERVER['HTTP_ORIGIN'] : '';
 
 if (in_array($origin, $allowed_origins)) {
