@@ -60,7 +60,7 @@ function MyApp({Component, pageProps}: AppProps) {
             </Box>
         </Layout>
     }
-    <Script strategy="afterInteractive" src="https://www.googletagmanager.com/gtag/js?id=G-4HLSHESRKE"/>
+    {/* <Script strategy="afterInteractive" src="https://www.googletagmanager.com/gtag/js?id=G-4HLSHESRKE"/> */}
 {/*         
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
