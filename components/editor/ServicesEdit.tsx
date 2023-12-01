@@ -73,7 +73,7 @@ export default function ServicesEdit({sendData, complete}: ServicesEditProps) {
    
 
     return (
-<Card css={{ p: '10px', mw: '550px', m: "0" }}>
+<Card css={{ p: '10px', mw: '550px', m: "0", gap: "$2" }}>
     <Card.Header>
         <Text h3 css={{textAlign: "center", width: "100%"}}>Services Page</Text>
     </Card.Header>

@@ -1,8 +1,7 @@
 import { Flex } from "../styles/flex"
-import { Button, Card, Checkbox, Dropdown, Input, Spacer, Switch, Text, useInput } from "@nextui-org/react"
+import { Button,  Text, } from "@nextui-org/react"
 import { useSession } from "next-auth/react"
 import Link from "next/link"
-import { Box } from "../styles/box";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store/store";
 import { postConfig } from "../../store/config-store";
@@ -122,86 +121,22 @@ if(session){
         <TestimonialsEdit sendData={submitTestimonialsHandler} complete={testimonialsLoading}/>
         <QuestionsEdit sendData={submitQuestionsHandler} complete={questionsLoading} />
         <StatEdit sendData={submitStatsHandler} complete={statsLoading} />
-
-    {/* <Card css={{ p: '10px', mw: '550px', m: "0" }}>
-        <Card.Header>
-            <Text h3 css={{textAlign: "center", width: "100%"}}>Home Page</Text>
-        </Card.Header>
-        <Input clearable bordered label={"Title Text"} placeholder={homeInfo.title}/>
-        <Input clearable bordered label={"Subtitle Text"} placeholder={homeInfo.subtitle}/>
-        <Input clearable bordered label={"Description"} placeholder={homeInfo.description}/>
-        {homeInfo.points.map((item, index) =>
-            <Input clearable bordered key={"point" + index} label={"Point "+ (index + 1)} placeholder={item.text}/>
-        )}
-    </Card> */}
-    {/* <Card css={{ p: '10px', mw: '550px', m: "0" }}>
-        <Card.Header>
-            <Text h3 css={{textAlign: "center", width: "100%"}}>About Page</Text>
-        </Card.Header>
-        <Input clearable bordered label={"About Intro"} placeholder={aboutInfo.intro}/>
-    </Card> */}
-    {/* <Card css={{ p: '10px', mw: '550px', m: "0" }}>
-        <Card.Header>
-            <Text h3 css={{textAlign: "center", width: "100%"}}>Stats</Text>
-        </Card.Header>
-        <Button size={"sm"} auto >Disable</Button>
-        <Input clearable bordered label={"Stats Title"} placeholder={statsInfo.title}/>
-        <Input clearable bordered label={"Stats Description"} placeholder={statsInfo.description}/>
-        {statsInfo.list.map((item, index) =>
-        <Box key={"Stat " +  index} css={{width: "100%",}}>
-            {"Stat " + (index + 1)}
-            <Input clearable bordered label={"Title"} placeholder={item.title} css={{width: "100%"}}/>
-            <Input clearable bordered label={"Description"} placeholder={item.description} css={{width: "100%"}}/>
-        </Box>
-        )}
-    </Card> */}
-    {/* <Card css={{ p: '10px', mw: '550px', m: "0" }}>
-        <Card.Header>
-            <Text h3 css={{textAlign: "center", width: "100%"}}>FAQ</Text>
-        </Card.Header>
-        <Button size={"sm"} auto >Disable</Button>
-        <Input clearable bordered label={"FAQ Title"} placeholder={faqInfo.title}/>
-        <Input clearable bordered label={"FAQ Subtitle"} placeholder={faqInfo.subtitle}/>
-        {faqInfo.list.map((item, index) =>
-        <Box key={"FAQ " +index} css={{width: "100%",}}>
-            {"FAQ " + (index + 1)}
-            <Input clearable bordered label={"Question"} placeholder={item.question} css={{width: "100%"}}/>
-            <Input clearable bordered label={"Answer"} placeholder={item.answer} css={{width: "100%"}}/>
-        </Box>
-        )}
-    </Card> */}
-    {/* <Card css={{ p: '10px', mw: '550px', m: "0" }}>
-        <Card.Header>
-            <Text h3 css={{textAlign: "center", width: "100%"}}>Comparision Images</Text>
-        </Card.Header>
-    </Card> */}
-
-
-    {/* <h3>Edit/Remove Page</h3> 
-    {menuInfo.map((item, index) => {
-        return(
-        <div key={index}>
-            <h4>{item.name}</h4>
-            <Checkbox label="Enabled" size={"sm"} isSelected={item.enabled} />
-        </div>);
-    })} */}
     
     <Flex css={{py: '$10', gap: '2rem', px: '0', width: "100%" }}
         justify={'center'}
         wrap={'wrap'}
         direction={'row'}
         align={'center'}>
-        <Button onPress={submitHandler}>Save Changes</Button>  
-        {/* <Button>Save Changes</Button>   */}
-    </Flex>
+        {/* <Button onPress={submitHandler}>Save Changes</Button>   */}
         <Link href="mailto:cbuccioljr@gmail.com">Email Question</Link>   
-    <Text h1
+    </Flex>
+    {/* <Text h1
         css={{
         width: '100%',
         // color: '$accents8',
         textAlign: 'center',}}>
             Guide
-    </Text>
+    </Text> */}
 
 
 </Flex>
