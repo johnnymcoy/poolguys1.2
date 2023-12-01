@@ -1,13 +1,13 @@
-import {Card, Divider, Text} from '@nextui-org/react';
+import { Divider, Text} from '@nextui-org/react';
 import React from 'react';
 import {QuotesIcon} from '../icons/QuotesIcon';
 import {Flex} from '../styles/flex';
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
+import CustomCard from '../UI/CustomCard';
 
 export const Testimonials = () => {
     const testimonials = useSelector((state: RootState) => state.config.testimonials);
-    // const testimonials = config.testimonials;
 
    return (
 <>
@@ -30,26 +30,25 @@ export const Testimonials = () => {
         },
     }}>
     <Flex direction="column" css={{gap: '1.5rem'}}>
-        {testimonials.list.map((item, index) => (
-        <Card key={index}>
-            <Card.Body>
-                <Flex css={{py: '$10',gap: '$5',}}>
+        {testimonials && testimonials.list.map((item, index) => (
+        <CustomCard key={index}>
+        <Flex css={{py: '$10',gap: '$5',}}>
                 <QuotesIcon />
                 <Flex direction={'column'} css={{gap: '0.5rem'}}>
                     <Text span css={{ maxWidth: '400px', color: '$accents8',}} >
                         {item.description}
                     </Text>
                     <Text span weight={'bold'} css={{maxWidth: '400px', display: 'contents',color: '$accents9',}}>
-                        {item.name} 
+                        {item.name}  
                     </Text>
                     <Text span css={{ display: 'contents',color: '$accents8',}}>
                         &nbsp;-&nbsp;{item.location ? item.location : item.occupation ? item.occupation : "Customer"}
                     </Text>
                 </Flex>
                 </Flex>
-            </Card.Body>
-        </Card>
+        </CustomCard>
         ))}
+
     </Flex>
     <Flex
         align={'start'}

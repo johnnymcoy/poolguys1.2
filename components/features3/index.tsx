@@ -1,10 +1,11 @@
-import {Card, Divider, Text} from '@nextui-org/react';
+import { Divider, Text} from '@nextui-org/react';
 import React from 'react';
 import {BoxIcon} from '../icons/BoxIcon';
 import {Box} from '../styles/box';
 import {Flex} from '../styles/flex';
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
+import CustomCard from '../UI/CustomCard';
 
 
 export const Features3 = () => {
@@ -38,20 +39,18 @@ export const Features3 = () => {
         wrap={'wrap'}
         css={{gap: '1rem', pt: '$14',}}>
         {services.list.map((item, index) => (
-        <Card css={{mw: '500px'}} key={index}>
-            <Card.Body>
-                <Flex css={{gap: '0.5rem'}}>
-                    <BoxIcon />
-                    <Flex direction={'column'}>
-                    <Text h5>{item.title}</Text>
-                    <Text span>
-                        {item.description}
-                    </Text>
-                    </Flex>
+        <CustomCard key={index} maxWidth={500}>
+            <Flex css={{gap: '0.5rem'}}>
+            <BoxIcon />
+            <Flex direction={'column'}>
+                <Text h5>{item.title}</Text>
+                <Text span>
+                    {item.description}
+                </Text>
                 </Flex>
-            </Card.Body>
-        </Card>
-        ))}
+            </Flex>
+        </CustomCard>))}
+
     </Flex>
     </Box>
 

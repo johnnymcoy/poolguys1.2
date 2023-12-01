@@ -1,0 +1,33 @@
+.container{
+    margin: 0px;
+    display: flex;
+    filter: drop-shadow(rgba(104, 112, 118, 0.15) 0px 12px 24px) drop-shadow(rgba(104, 112, 118, 0.1) 0px 12px 14px);
+    border-radius: 14px;
+    background: #ffffff;
+    width: 100%;
+    flex-direction: column;
+}
+
+.inner{
+    display: flex;
+    width: 100%;
+    height: auto;
+    flex: 1 1 auto;
+    flex-direction: column;
+    padding: 1.25rem 0.75rem;
+    /* padding-top: 1.5rem;
+    padding-bottom: 1.5rem; */
+    gap: 0.625rem;
+}
+
+.header{
+    width: 100%;
+    padding: 0.75rem;
+}
+
+
+.main{
+    /* padding-top: 1.5rem;
+    padding-bottom: 1.5rem; */
+
+}

@@ -2,13 +2,14 @@
 import {FormEvent, useState} from "react"
 import useInput from "../../hooks/useInput";
 import {Flex} from '../styles/flex';
-import {Button, Card, Input,  Text, Textarea, Spacer, useTheme, Loading} from '@nextui-org/react';
+import {Button, Input,  Text, Textarea, Spacer, useTheme, Loading} from '@nextui-org/react';
 
 import CSS from './ContactForm.module.css';
 import ReCAPTCHA from "react-google-recaptcha";
 import { ModalConfirm } from "../modal/ModalConfirm";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
+import CustomCard from "../UI/CustomCard";
 
 function ContactForm(){
     const {title, description, mobile, require_captcha} = useSelector((state: RootState) => state.config.contact);
@@ -173,9 +174,8 @@ function ContactForm(){
           <Flex justify={'center'} wrap={'wrap'} css={{ padding: '$10', px: "$10"}}>
 
         {toggleModal && <ModalConfirm title={"Please fill out each field"} onClose={closeModal}/>}
-
-        <Card>
-            <form onSubmit={formSubmitHandler} className={CSS.auth} >
+        <CustomCard>
+        <form onSubmit={formSubmitHandler} className={CSS.auth} >
                 <Flex css={{justifyContent: "center", py: '$4', gap: '$0',}}>
                     <Input status={nameStatus} labelPlaceholder="Full Name" bordered={isDark} clearable value={enteredName} onBlur={nameBlurHandler} onChange={nameChangedHandler} placeholder="John Smith" type="text" id="name" name="from_name" aria-label="Full Name"/>
                 </Flex>
@@ -205,7 +205,8 @@ function ContactForm(){
                 </Button>
                 </Flex>
             </form>
-        </Card>
+
+        </CustomCard>
         </Flex>
     </Flex>
 </Flex>

@@ -1,10 +1,10 @@
-import {Card, Divider, Grid, Spacer, Text} from '@nextui-org/react';
+import { Divider, Grid, Text} from '@nextui-org/react';
 import React from 'react';
 import {Flex} from '../styles/flex';
 import { ImageCompare } from '../gallery/ImageCompare';
-import CSS from "./BeforeAfter.module.css";
 import { RootState } from '../../store/store';
 import { useSelector } from 'react-redux';
+import CustomCard from '../UI/CustomCard';
 
 
 export const BeforeAfter = () => {
@@ -39,9 +39,8 @@ export const BeforeAfter = () => {
         justify={'center'}
     >
         {photos && photos.map((item, index) => 
-        <Card key={index} css={{ p: '10px', mw: '550px', m: "0" }}>
-            <Card.Header>
-                <Grid.Container   >
+        <CustomCard key={index} maxWidth={550} padding={10} header={
+            <Grid.Container   >
                 <Text span css={{color: '$blue600', marginBottom: "0rem", textAlign: "center", width: "100%"}}>
                     {photoDescription}
                 </Text>
@@ -49,15 +48,12 @@ export const BeforeAfter = () => {
                     <Text h3 css={{ margin: "0rem", textAlign: "center", width: "100%",}} >{photoTitle}</Text>
                 </Grid>
                 </Grid.Container>
-            </Card.Header>
-            <Card.Body css={{ py: '$6', overflow: "hidden" }}>
-                <ImageCompare   
-                    firstImgSrc={item.beforeSrc}
-                    secondImgSrc={item.afterSrc}
-                    />
-            </Card.Body>
-        </Card>
-        )}
+            }>
+            <ImageCompare   
+                        firstImgSrc={item.beforeSrc}
+                        secondImgSrc={item.afterSrc}
+                        />
+        </CustomCard>)}
     </Flex>
 </Flex>
 <Divider css={{ inset: '0p', left: 0, bottom: '0', mt: '$5'}} />
