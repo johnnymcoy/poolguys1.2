@@ -6,15 +6,13 @@ import { useState } from "react";
 
 export interface ColorInfo {
     primary: string;
-    body: string;
+    background: string;
     text: string;
-
-
 }
 
 export interface ThemeInfo {
-    bShowDarkMode: boolean;
-    themeColors: ColorInfo;
+    bDarkMode: boolean;
+    theme_color: ColorInfo;
     // textColors: ColorInfo;
 }
 
@@ -46,10 +44,10 @@ export default function ThemeEdit({sendData, complete}: ThemeEditProps) {
 
     function submitTestimonialsInfo(){
         const sendThemeInfo: ThemeInfo = {
-            bShowDarkMode: darkMode,
-            themeColors: {
+            bDarkMode: darkMode,
+            theme_color: {
                 primary: "string",
-                body: "string",
+                background: "string",
                 text: "string",        
             }
         }

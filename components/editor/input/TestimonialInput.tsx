@@ -1,5 +1,5 @@
 import { Box } from "@/components/styles/box";
-import { FormElement, Input, Text, useInput } from "@nextui-org/react";
+import { Checkbox, FormElement, Input, Text, useInput } from "@nextui-org/react";
 import { ChangeEvent, useEffect, useState } from "react";
 
 export interface Testimonial {
@@ -7,6 +7,7 @@ export interface Testimonial {
     description: string;
     location: string;
     occupation: string;
+    enabled: boolean;
 }
 
 interface TestimonialProps {
@@ -18,7 +19,8 @@ interface TestimonialProps {
 
 export default function TestimonialInput({testimonial, index, onChange, bHide}: TestimonialProps) {
 
-    const [testimonialData, setTestimonialData] = useState<Testimonial>({name: "", description: "", location: "", occupation: ""});
+    const [testimonialData, setTestimonialData] = useState<Testimonial>({name: testimonial.name, 
+        description: testimonial.description, location: testimonial.location, occupation: testimonial.occupation, enabled: testimonial.enabled});
 
 
     function changeHandler(e: ChangeEvent<FormElement>, type: string){
@@ -57,6 +59,13 @@ export default function TestimonialInput({testimonial, index, onChange, bHide}: 
         }
     }
 
+    function checkboxChangeHandler(e: boolean){
+        const newTestimonial: Testimonial = {name: testimonialData.name, description: testimonialData.description, 
+            location: testimonialData.location, occupation: testimonialData.occupation, enabled: e};
+        setTestimonialData(newTestimonial);
+    }
+
+
     useEffect(() => {
         onChange(testimonialData, index);
       }, [testimonialData]);
@@ -74,5 +83,9 @@ export default function TestimonialInput({testimonial, index, onChange, bHide}: 
     <Input clearable bordered label={"Location"} placeholder={testimonial.location} css={{width: "100%"}}
         value={testimonialData?.location} onChange={(e: ChangeEvent<FormElement>) => changeHandler(e, "location")}/>
     <Text>Previous: {testimonial.location}</Text>
+    <div>
+        <Checkbox size="sm" label={"Enabled"} isSelected={testimonialData.enabled} defaultChecked={testimonialData.enabled} onChange={checkboxChangeHandler} />
+    </div>
+
 </Box>
 )}

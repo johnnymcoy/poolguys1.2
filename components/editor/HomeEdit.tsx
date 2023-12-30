@@ -53,14 +53,12 @@ export default function HomeEdit({sendData, complete}: HomeEditProps) {
     const [enabled, setEnabled] = useState(homeInfo.pointsEnabled);
 
     const [points, setPoints] = useState<Point[]>(homeInfo.points);
+    const [addedPoints, setAddedPoints] = useState<Point[]>([]);
 
-    // const pointsTotal = homeInfo.points.map((item) => ({ text: item.text, input: useInput(""), enabled: item.enabled}));
-    // const [pointsTotal, setPointsTotal] = useState(homeInfo.points.map((item) => ({ text: item.text, input: useInput("") })));   
-
-    // function addPointHandler(){
-    //     // const newPoint = { text: "Cleaning", input: useInput("")};
-    //     setPointsTotal(prevState => [...prevState, { text: "Cleaning", input: useInput("")}]);
-    // }
+    function addPointHandler(){
+        const newPoint = { text: "Cleaning", enabled: true};
+        setAddedPoints(prevState => [...prevState, newPoint]);
+    }
 
     function setPointsHandler(data: Point, index: number){
         const newPoints = points.map((item, i) => {
@@ -71,7 +69,17 @@ export default function HomeEdit({sendData, complete}: HomeEditProps) {
             }
         });
         setPoints(newPoints);
-        console.log(points)
+    }
+    function setAddedPointsHandler(data: Point, index: number){
+        const newPoints = addedPoints.map((item, i) => {
+            if((homeInfo.points.length - i) === index){
+                return data;
+            } else {
+                return item;
+            }
+        });
+        setAddedPoints(newPoints);
+        // console.log(addedPoints)
     }
 
 
@@ -91,47 +99,14 @@ export default function HomeEdit({sendData, complete}: HomeEditProps) {
         {
             description = descriptionInput.value;
         }
-        // let points = [];
-        // for(let i = 0; i < pointsTotal.length; i++)
-        // {
-        //     if(pointsTotal[i].input.currentRef.current.replace(/\s/g, "") !== "" && pointsTotal[i].input.currentRef.current !== homeInfo.points[i].text)
-        //     {
-        //         const newPoint: Point = { text: pointsTotal[i].input.currentRef.current, }//enabled: pointsTotal.};
-        //         points.push(newPoint);
-        //         console.log(pointsTotal[i].input.currentRef.current);
-        //     }
-        //     else
-        //     {
-        //         points.push(pointsTotal[i]);
-        //     }
-        //     if(pointsTotal[i].enabled !== homeInfo.points[i].enabled)
-        //     {
-                
-        //     }
-        // }
-        // console.log(points)
-        // for(let i = 0; i < pointsTotal.length; i++)
-        // {
-        //     if(pointsInput[i].value.replace(/\s/g, "") !== "" && pointsInput[i].value !== pointsTotal[i].text)
-        //     {
-        //         const newPoint: Point = { text: pointsInput[i].value};
-        //         points.push(newPoint);
-        //         console.log(pointsInput[i].value);
-        //     }
-        //     else
-        //     {
-        //         points.push(pointsTotal[i]);
-        //     }
-        // }
-        // if(points.length === 0)
-        // {
-        //     points = pointsTotal;
-        // }
+        const allPoints = [...points, ...addedPoints];
+        const filteredPoints = allPoints.filter(point => point.enabled !== false);
+        setPoints(filteredPoints);
         const sendHomeInfo: HomeInfo = {
             title,
             subtitle,
             description,
-            points: points,
+            points: filteredPoints,
             pointsEnabled: enabled,
             images: homeInfo.images,
         }
@@ -141,7 +116,7 @@ export default function HomeEdit({sendData, complete}: HomeEditProps) {
         }
     }
    
-
+    // console.log(homeInfo)
     return (
 <Card css={{ p: '10px', mw: '550px', m: "0" }}>
     <Card.Header>
@@ -160,25 +135,29 @@ export default function HomeEdit({sendData, complete}: HomeEditProps) {
         <Spacer />
         <Spacer />
         <Text>Points Enabled</Text>
-        <Switch size="sm" initialChecked={homeInfo.pointsEnabled} onChange={(e) => {setEnabled(e.target.checked)}}/>
+        {/* <Checkbox size="sm" label={"Enabled"} isSelected={enabled} onChange={setEnabled} /> */}
+        {homeInfo.points &&  <Switch size="sm" checked={homeInfo.pointsEnabled} onChange={(e) => {setEnabled(e.target.checked)}}/>}
         <Text>Previous: {homeInfo.pointsEnabled ? "true" : "false"}</Text>
         <Spacer />
         {homeInfo.points.map((item, index) => {
             return(
             <div key={index}>
                 <HomeInput point={item} index={index} onChange={setPointsHandler} />
-                {/* <Input clearable bordered label={`${"Point "} ${index + 1}`} placeholder={item.text} 
-                    value={item.input.bindings.value} onChange={item.input.bindings.onChange}/>
-                <Text>Previous: {item.text}</Text>
-                <div>
-                </div> */}
             </div>
             )
         })}
+        {addedPoints.map((item, index) => {
+            return(
+            <div key={index}>
+                <HomeInput point={item} index={homeInfo.points.length + index} onChange={setAddedPointsHandler} />
+            </div>
+            )
+        })}
+
         <Spacer />
-        {/* <div>
+        <div>
             <Button auto size={"xs"} onClick={addPointHandler}>Add Point</Button>
-        </div> */}
+        </div>
         <Spacer />
 
     <Button onPress={submitHomeInfo}>Save Changes</Button>

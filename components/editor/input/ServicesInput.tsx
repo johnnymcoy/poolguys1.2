@@ -1,10 +1,11 @@
 import { Box } from "@/components/styles/box";
-import { Button, FormElement, Input, Text, useInput } from "@nextui-org/react";
+import { Button, Checkbox, FormElement, Input, Text, useInput } from "@nextui-org/react";
 import { ChangeEvent, useEffect, useState } from "react";
 
 export interface Service {
     title: string;
     description: string;
+    enabled: boolean;
 }
 
 interface ServicesProps {
@@ -16,7 +17,7 @@ interface ServicesProps {
 
 export default function ServicesInput({service, index, onChange, bHide}: ServicesProps) {
 
-    const [serviceData, setServiceData] = useState<Service>({title: "", description: ""});
+    const [serviceData, setServiceData] = useState<Service>({title: service.title, description: service.description, enabled: service.enabled});
 
 
     function changeHandler(e: ChangeEvent<FormElement>, type: string){
@@ -44,6 +45,12 @@ export default function ServicesInput({service, index, onChange, bHide}: Service
         }
     }
 
+    function checkboxChangeHandler(e: boolean){
+        
+        const newService: Service = {title: serviceData.title, description: serviceData.description, enabled: e};
+        setServiceData(newService);
+    }
+
     useEffect(() => {
         onChange(serviceData, index);
       }, [serviceData]);
@@ -58,6 +65,8 @@ export default function ServicesInput({service, index, onChange, bHide}: Service
     <Input clearable bordered label={"Description"} placeholder={service.description} css={{width: "100%"}}
         value={serviceData?.description} onChange={(e: ChangeEvent<FormElement>) => changeHandler(e, "description")}/>
     <Text>Previous: {service.description}</Text>
-    {/* <Button size="xs">Remove</Button> */}
+    <div>
+        <Checkbox size="sm" label={"Enabled"} isSelected={serviceData.enabled} defaultChecked={serviceData.enabled} onChange={checkboxChangeHandler} />
+    </div>
 </Box>
 )}

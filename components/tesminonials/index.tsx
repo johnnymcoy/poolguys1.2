@@ -34,7 +34,10 @@ export const Testimonials = () => {
         },
     }}>
     <Flex direction="column" css={{gap: '1.5rem'}}>
-        {testimonials && testimonials.list.map((item, index) => (
+        {testimonials && testimonials.list.map((item, index) => {
+            
+            if(!item.enabled){return (<div key={index}></div>)}
+            return(
         <CustomCard key={index}>
         <Flex css={{py: '$10',gap: '$5',}}>
                 <QuotesIcon />
@@ -51,7 +54,7 @@ export const Testimonials = () => {
                 </Flex>
                 </Flex>
         </CustomCard>
-        ))}
+        )})}
 
     </Flex>
     <Flex

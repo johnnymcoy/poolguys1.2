@@ -8,6 +8,7 @@ import ServicesInput from "./input/ServicesInput";
 export interface Service {
     title: string;
     description: string;
+    enabled: boolean;
 }
 
 export interface ServicesInfo {
@@ -38,7 +39,14 @@ export default function ServicesEdit({sendData, complete}: ServicesEditProps) {
 
 
     const [services, setServices] = useState<Service[]>(servicesInfo.list);
+    const [addedServices, setAddedServices] = useState<Service[]>([]);
 
+    function addServiceHandler(){
+        const newService = { title: "Cleaning", description: "Cleaning pools", enabled: true};
+        setAddedServices(prevState => [...prevState, newService]);
+        setServices(prevState => [...prevState, newService]);
+
+    }
 
     function setServicesHandler(data: Service, index: number){
         const newServices = services.map((item, i) => {
@@ -50,6 +58,18 @@ export default function ServicesEdit({sendData, complete}: ServicesEditProps) {
         });
         setServices(newServices);
     }
+
+    function setAddedServicesHandler(data: Service, index: number){
+        const newServices = addedServices.map((item, i) => {
+            if((servicesInfo.list.length - i) === index){
+                return data;
+            } else {
+                return item;
+            }
+        });
+        setAddedServices(newServices);
+    }
+
 
 
     function submitServicesInfo(){
@@ -63,11 +83,14 @@ export default function ServicesEdit({sendData, complete}: ServicesEditProps) {
         {
             description = descriptionInput.value;
         }
+        const allServices = [...services, ...addedServices];
+        const filteredServices = allServices.filter(service => service.enabled !== false);
+        setServices(filteredServices);
 
         const sendServicesInfo: ServicesInfo = {
             title,
             description,
-            list: services,
+            list: filteredServices,
             enabled
         }
         if(sendData)
@@ -97,6 +120,20 @@ export default function ServicesEdit({sendData, complete}: ServicesEditProps) {
     {servicesInfo.list.map((item, index) =>
         <ServicesInput key={index} service={item} index={index} onChange={setServicesHandler} />
     )}
+    {addedServices.map((item, index) => {
+        return(
+        <div key={index}>
+        <ServicesInput key={index} service={item} index={servicesInfo.list.length + index} onChange={setAddedServicesHandler} />
+        </div>
+        )
+    })}
+
+    <Spacer />
+    <div>
+        <Button auto size={"xs"} onClick={addServiceHandler}>Add Service</Button>
+    </div>
+    <Spacer />
+
     <Button onPress={submitServicesInfo}>Save Changes</Button>
     {complete === "loading" && <Loading></Loading>}
     </Card.Body>}

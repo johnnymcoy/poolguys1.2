@@ -4,8 +4,8 @@ import { useSession } from "next-auth/react"
 import Link from "next/link"
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store/store";
-import { postConfig } from "../../store/config-store";
-import { useState } from "react";
+import { fetchConfig, postConfig } from "../../store/config-store";
+import { useEffect, useState } from "react";
 import ContactEdit, { SiteInfo, Status } from "./ContactEdit";
 import ServicesEdit, { ServicesInfo } from "./ServicesEdit";
 import TestimonialsEdit, { TestimonialsInfo } from "./TestimonialsEdit";
@@ -119,6 +119,15 @@ export default function PageEditor() {
 
         console.log(sendData);
         dispatch(postConfig(sendData))
+        //TODO Show modal Complete
+
+        setTimeout(fectchUpdated, 2000)
+        // window.location.reload();
+    }
+
+
+    function fectchUpdated(){
+        dispatch(fetchConfig());
     }
     
     

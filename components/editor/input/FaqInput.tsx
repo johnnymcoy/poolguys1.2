@@ -1,10 +1,11 @@
 import { Box } from "@/components/styles/box";
-import { FormElement, Input, Text, useInput } from "@nextui-org/react";
+import { Checkbox, FormElement, Input, Text, useInput } from "@nextui-org/react";
 import { ChangeEvent, useEffect, useState } from "react";
 
 export interface Question {
     question: string;
     answer: string;
+    enabled: boolean;
 }
 
 interface QuestionProps {
@@ -16,7 +17,7 @@ interface QuestionProps {
 
 export default function QuestionInput({faq, index, onChange, bHide}: QuestionProps) {
 
-    const [questionData, setQuestionData] = useState<Question>({question: "", answer: ""});
+    const [questionData, setQuestionData] = useState<Question>({question: faq.question, answer: faq.answer, enabled: faq.enabled});
 
 
     function changeHandler(e: ChangeEvent<FormElement>, type: string){
@@ -44,8 +45,13 @@ export default function QuestionInput({faq, index, onChange, bHide}: QuestionPro
         }
     }
 
+    function checkboxChangeHandler(e: boolean){
+        const newQuestion: Question = {question: questionData.question, answer: questionData.answer, enabled: e};
+        setQuestionData(newQuestion);
+    }
+
+
     useEffect(() => {
-        // console.log(questionData)
         onChange(questionData, index);
       }, [questionData]);
 
@@ -59,5 +65,9 @@ export default function QuestionInput({faq, index, onChange, bHide}: QuestionPro
     <Input clearable bordered label={"Answer"} placeholder={faq.answer} css={{width: "100%"}}
         value={questionData?.answer} onChange={(e: ChangeEvent<FormElement>) => changeHandler(e, "answer")}/>
     <Text>Previous: {faq.answer}</Text>
+    <div>
+        <Checkbox size="sm" label={"Enabled"} isSelected={questionData.enabled} defaultChecked={questionData.enabled} onChange={checkboxChangeHandler} />
+    </div>
+
 </Box>
 )}

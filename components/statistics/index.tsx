@@ -11,61 +11,62 @@ export const Statistics = () => {
     if(!enabled){return(<div></div>)};
 
    return (
-      <>
-         <Box
+<>
+    <Box
+    css={{
+        pt: '$20',
+        pb: '$16',
+        px: '$6',
+    }}
+    >
+    <Flex direction={'column'} align={'center'}>
+        <Text
+            h3
             css={{
-               pt: '$20',
-               pb: '$16',
-               px: '$6',
+                textAlign: 'center',
             }}
-         >
-            <Flex direction={'column'} align={'center'}>
-               <Text
-                  h3
-                  css={{
-                     textAlign: 'center',
-                  }}
-               >
-                  {title}
-               </Text>
-               <Text
-                  span
-                  css={{
-                     maxWidth: '800px',
-                     textAlign: 'center',
-                  }}
-               >
-                  {description}
-               </Text>
-            </Flex>
-            <Flex
-               direction={'row'}
-               wrap={'wrap'}
-               justify={'center'}
-               css={{
-                  'gap': '4rem',
-                  'pt': '$16',
-                  '@sm': {
-                     gap: '10rem',
-                  },
-               }}
-            >
-            {list.map((item, index) => (
-            <Flex key={index} direction={'column'}>
-                <Text h2 css={{color: '$blue600'}}>
-                    {item.description}
-                </Text>
-                <Text span css={{textAlign: 'center'}} weight={'medium'}>
-                    {item.title}
-                </Text>
-            </Flex>
-            ))}
-            </Flex>
-         </Box>
+        >
+            {title}
+        </Text>
+        <Text
+            span
+            css={{
+                maxWidth: '800px',
+                textAlign: 'center',
+            }}
+        >
+            {description}
+        </Text>
+    </Flex>
+    <Flex
+        direction={'row'}
+        wrap={'wrap'}
+        justify={'center'}
+        css={{
+            'gap': '4rem',
+            'pt': '$16',
+            '@sm': {
+                gap: '10rem',
+            },
+        }}
+    >
+    {list.map((item, index) => {
+        if(!item.enabled){return(<div key={index}></div>)}
+        return(
+    <Flex key={index} direction={'column'}>
+        <Text h2 css={{color: '$blue600'}}>
+            {item.description}
+        </Text>
+        <Text span css={{textAlign: 'center'}} weight={'medium'}>
+            {item.title}
+        </Text>
+    </Flex>
+    )})}
+    </Flex>
+    </Box>
 
-         <Divider
-            css={{position: 'absolute', inset: '0p', left: '0', mt: '$5'}}
-         />
-      </>
-   );
-};
+    <Divider
+    css={{position: 'absolute', inset: '0p', left: '0', mt: '$5'}}
+    />
+</>
+);};

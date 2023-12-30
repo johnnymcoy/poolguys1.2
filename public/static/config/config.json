@@ -9,7 +9,8 @@
     "logo_darkmode": "/static/images/logo-darkmode.webp",
     "logo_width": "200",
     "logo_height": "60",
-    "logo_text": "Pool Guys"
+    "logo_text": "Pool Guys",
+    "version" : "Local"
   },
   "theme" : {
     "bDarkMode" : false,

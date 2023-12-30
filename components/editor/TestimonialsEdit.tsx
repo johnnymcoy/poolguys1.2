@@ -10,6 +10,7 @@ export interface Testimonial {
     description: string;
     location: string;
     occupation: string;
+    enabled: boolean;
 }
 
 export interface TestimonialsInfo {
@@ -37,6 +38,12 @@ export default function TestimonialsEdit({sendData, complete}: TestimonialsEditP
     const [enabled, setEnabled] = useState(testimonialsInfo.enabled);
 
     const [testimonials, setTestimonials] = useState<Testimonial[]>(testimonialsInfo.list);
+    const [addedTestimonials, setAddedTestimonials] = useState<Testimonial[]>([]);
+
+    function addTestimonialHandler(){
+        const newTestimonial = { name: "Greg", description: "incredible Service", location: "NSW", occupation: "", enabled: true};
+        setAddedTestimonials(prevState => [...prevState, newTestimonial]);
+    }
 
     function setTestimonialsHandler(data: Testimonial, index: number){
         const newTestimonials = testimonials.map((item, i) => {
@@ -47,6 +54,17 @@ export default function TestimonialsEdit({sendData, complete}: TestimonialsEditP
             }
         });
         setTestimonials(newTestimonials);
+    }
+
+    function setAddedTestimonialsHandler(data: Testimonial, index: number){
+        const newTestimonials = addedTestimonials.map((item, i) => {
+            if((testimonialsInfo.list.length - i) === index){
+                return data;
+            } else {
+                return item;
+            }
+        });
+        setAddedTestimonials(newTestimonials);
     }
 
     // useEffect(() => {
@@ -74,13 +92,16 @@ export default function TestimonialsEdit({sendData, complete}: TestimonialsEditP
         {
             description = descriptionInput.value;
         }
+        const allTestimonials = [...testimonials, ...addedTestimonials];
+        const filteredTestimonials = allTestimonials.filter(testimonial => testimonial.enabled !== false);
+        setTestimonials(filteredTestimonials);
 
         const sendTestimonialInfo: TestimonialsInfo = {
             enabled, 
             title,
             subtitle,
             description,
-            list: testimonials,
+            list: filteredTestimonials,
         }
         if(sendData)
         {
@@ -113,8 +134,17 @@ export default function TestimonialsEdit({sendData, complete}: TestimonialsEditP
         {testimonialsInfo.list.map((item, index) =>
             <TestimonialInput key={index} testimonial={item} index={index} onChange={setTestimonialsHandler} />
         )}
-    <TestimonialInput bHide testimonial={{name: "",location: "", description: "", occupation: ""}} index={5} onChange={setTestimonialsHandler} />
-    {/* <Button auto onPress={submitTestimonialsInfo}>Add New Testimonial</Button> */}
+        {addedTestimonials.map((item, index) =>
+            <TestimonialInput key={index} testimonial={item} index={testimonialsInfo.list.length + index} onChange={setAddedTestimonialsHandler} />
+        )}
+
+    <TestimonialInput bHide testimonial={{name: "",location: "", description: "", occupation: "", enabled: false}} index={5} onChange={setTestimonialsHandler} />
+    <Spacer />
+        <div>
+            <Button auto size={"xs"} onClick={addTestimonialHandler}>Add Testimonial</Button>
+        </div>
+        <Spacer />
+
     <Spacer />
     <Button onPress={submitTestimonialsInfo}>Save Changes</Button>
     {complete === "loading" && <Loading></Loading>}

@@ -3,13 +3,18 @@ import {Layout} from '../components/navbar/layout';
 import Login from '@/components/auth/Login';
 import PageEditor from '@/components/editor/PageEditor';
 import { useDispatch} from "react-redux";
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { fetchConfig } from '../store/config-store';
 
 const Admin: NextPage = () => {
     const dispatch = useDispatch();
+
+    // const [loaded, setLoaded] = useState(false);
+
     useEffect(() => {
-      dispatch(fetchConfig());
+        dispatch(fetchConfig());
+        // setLoaded(true);
+
     }, [dispatch]);
 
    return (

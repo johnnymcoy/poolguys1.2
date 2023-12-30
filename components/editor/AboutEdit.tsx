@@ -9,6 +9,7 @@ import StatsInput from "./input/StatInput";
 export interface About {
     title: string;
     description: string;
+    enabled: boolean;
 }
 
 export interface AboutInfo {
@@ -108,9 +109,9 @@ export default function AboutEdit({sendData, complete}: AboutEditProps) {
         <Spacer />
 
     {aboutInfo.points.map((item, index) =>
-        <StatsInput key={index} stat={item} index={index} onChange={setPointsHandler} />
+        <StatsInput key={index} stat={item} index={index} onChange={setPointsHandler} title={"About Point "} />
     )}
-    <StatsInput bHide stat={{title: "", description: ""}} index={3} onChange={setPointsHandler} />
+    <StatsInput bHide stat={{title: "", description: "", enabled: false}} index={3} onChange={setPointsHandler} title={"About"}/>
     <Button onPress={submitServicesInfo}>Save Changes</Button>
     {complete === "loading" && <Loading></Loading>}
     </Card.Body>}

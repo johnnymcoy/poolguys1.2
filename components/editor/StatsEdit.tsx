@@ -10,6 +10,7 @@ import StatsInput from "./input/StatInput";
 export interface Stat {
     title: string;
     description: string;
+    enabled: boolean;
 }
 
 export interface StatInfo {
@@ -93,16 +94,16 @@ export default function StatEdit({sendData, complete}: StatEditProps) {
         <Text>Previous: {statInfo.enabled ? "true" : "false"}</Text>
         <Spacer />
 
-        <Input clearable bordered label={"Testimonial Title"} placeholder={statInfo.title}
+        <Input clearable bordered label={"Stat Title"} placeholder={statInfo.title}
             value={titleInput.bindings.value} onChange={titleInput.bindings.onChange}/>
         <Text>Previous: {statInfo.title}</Text>
-        <Input clearable bordered label={"Testimonial Description"} placeholder={statInfo.description}
+        <Input clearable bordered label={"Stat Description"} placeholder={statInfo.description}
             value={descriptionInput.bindings.value} onChange={descriptionInput.bindings.onChange}/>
         <Text>Previous: {statInfo.description}</Text>
         {statInfo.list.map((item, index) =>
             <StatsInput key={index} stat={item} index={index} onChange={setStatsHandler} />
         )}
-    <StatsInput bHide stat={{title: "", description: "", }} index={4} onChange={setStatsHandler} />
+    <StatsInput bHide stat={{title: "", description: "", enabled: false}} index={4} onChange={setStatsHandler} />
     <Spacer />
     <Button onPress={submitTestimonialsInfo}>Save Changes</Button>
     {complete === "loading" && <Loading></Loading>}

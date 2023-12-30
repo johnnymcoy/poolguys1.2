@@ -9,6 +9,7 @@ import QuestionInput from "./input/FaqInput";
 export interface Question {
     question: string;
     answer: string;
+    enabled: boolean;
 }
 
 export interface QuestionsInfo {
@@ -35,6 +36,15 @@ export default function QuestionsEdit({sendData, complete}: QuestionsEditProps) 
     const [enabled, setEnabled] = useState(faqInfo.enabled);
 
     const [faqs, setFaqs] = useState<Question[]>(faqInfo.list);
+    const [addedFaqs, setAddedFaqs] = useState<Question[]>([]);
+
+    function addQuestionHandler(){
+        const newQuestion: Question = { question: "Do you offer money back", 
+            answer: "Yes, we have a money back policy", enabled: true};
+
+        setAddedFaqs(prevState => [...prevState, newQuestion]);
+    }
+
 
     function setFaqsHandler(data: Question, index: number){
         const newFaqs = faqs.map((item, i) => {
@@ -46,6 +56,18 @@ export default function QuestionsEdit({sendData, complete}: QuestionsEditProps) 
         });
         setFaqs(newFaqs);
     }
+
+    function setAddedFaqsHandler(data: Question, index: number){
+        const newFaqs = addedFaqs.map((item, i) => {
+            if((faqInfo.list.length - i) === index){
+                return data;
+            } else {
+                return item;
+            }
+        });
+        setAddedFaqs(newFaqs);
+    }
+
 
     // useEffect(() => {
     //     console.log(faqs)
@@ -66,12 +88,15 @@ export default function QuestionsEdit({sendData, complete}: QuestionsEditProps) 
         {
             subtitle = subtitleInput.value;
         }
+        const allFaq = [...faqs, ...addedFaqs];
+        const filteredFaq = allFaq.filter(faq => faq.enabled !== false);
+        setFaqs(filteredFaq);
 
         const sendQuestionInfo: QuestionsInfo = {
             title,
             subtitle,
             enabled,
-            list: faqs,
+            list: filteredFaq,
         }
         if(sendData)
         {
@@ -101,7 +126,17 @@ export default function QuestionsEdit({sendData, complete}: QuestionsEditProps) 
         {faqInfo.list.map((item, index) =>
             <QuestionInput key={index} faq={item} index={index} onChange={setFaqsHandler} />
         )}
-    <QuestionInput bHide faq={{question: "", answer: ""}} index={5} onChange={setFaqsHandler} />
+        {addedFaqs.map((item, index) =>
+            <QuestionInput key={index} faq={item} index={faqInfo.list.length + index} onChange={setAddedFaqsHandler} />
+        )}
+
+    <QuestionInput bHide faq={{question: "", answer: "", enabled: false}} index={5} onChange={setFaqsHandler} />
+    <Spacer />
+        <div>
+            <Button auto size={"xs"} onClick={addQuestionHandler}>Add Question</Button>
+        </div>
+        <Spacer />
+    <Spacer />
     <Spacer />
     <Button onPress={submitQuestionsInfo}>Save Changes</Button>
     {complete === "loading" && <Loading></Loading>}
