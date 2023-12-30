@@ -9,6 +9,10 @@ import CustomCard from '../UI/CustomCard';
 export const Testimonials = () => {
     const testimonials = useSelector((state: RootState) => state.config.testimonials);
 
+    if(!testimonials.enabled)
+    {
+        return (<></>);
+    }
    return (
 <>
     <Flex

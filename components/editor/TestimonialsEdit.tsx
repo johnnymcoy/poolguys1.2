@@ -16,6 +16,7 @@ export interface TestimonialsInfo {
     title: string;
     subtitle: string;
     description: string;
+    enabled: boolean;
     list: Testimonial[];
 }
 
@@ -33,6 +34,7 @@ export default function TestimonialsEdit({sendData, complete}: TestimonialsEditP
     const testimonialsInfo = useSelector((state: RootState) => state.config.testimonials); 
     const [open, setOpen] = useState(false);
 
+    const [enabled, setEnabled] = useState(testimonialsInfo.enabled);
 
     const [testimonials, setTestimonials] = useState<Testimonial[]>(testimonialsInfo.list);
 
@@ -74,6 +76,7 @@ export default function TestimonialsEdit({sendData, complete}: TestimonialsEditP
         }
 
         const sendTestimonialInfo: TestimonialsInfo = {
+            enabled, 
             title,
             subtitle,
             description,
@@ -93,6 +96,11 @@ export default function TestimonialsEdit({sendData, complete}: TestimonialsEditP
     </Card.Header>
     {open &&
     <Card.Body>
+        <Text>Enabled</Text>
+        <Switch size="sm" initialChecked={testimonialsInfo.enabled} onChange={(e) => {setEnabled(e.target.checked)}}/>
+        <Text>Previous: {testimonialsInfo.enabled ? "true" : "false"}</Text>
+        <Spacer />
+
         <Input clearable bordered label={"Testimonial Title"} placeholder={testimonialsInfo.title}
             value={titleInput.bindings.value} onChange={titleInput.bindings.onChange}/>
         <Text>Previous: {testimonialsInfo.title}</Text>

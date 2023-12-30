@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
 
 export const Hero = () => {
-    const {title, subtitle, description, points} = useSelector((state: RootState) => state.config.home);
+    const {title, subtitle, description, points, pointsEnabled} = useSelector((state: RootState) => state.config.home);
     // const {title, subtitle, description, points} = config.home;
     const {home_image} = useSelector((state: RootState) => state.config.home.images);
     // const {home_image} = config.images;
@@ -48,11 +48,13 @@ export const Hero = () => {
             </Link>
         </Flex>}
         <Flex  wrap={'wrap'} css={{ 'gap': '$8','py': '$7','@sm': { py: '$4', },}}>
-            {points.map((item, index) => (
+            {pointsEnabled && points.map((item, index) => {
+                if(!item.enabled){return(<div key={index}></div>)}
+                return(
                 <Flex  key={index} css={{  color: '$accents7', alignItems: 'center', }}>
                     <CheckIcon /> {item.text}
                 </Flex>
-            ))}
+            )})}
         </Flex>
     </Box>
     <Box css={{ '& img': { width: '775px',  objectFit: 'contain',},}}>

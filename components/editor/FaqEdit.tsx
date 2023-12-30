@@ -32,6 +32,7 @@ export default function QuestionsEdit({sendData, complete}: QuestionsEditProps) 
     const faqInfo = useSelector((state: RootState) => state.config.FAQ); 
     const [open, setOpen] = useState(false);
 
+    const [enabled, setEnabled] = useState(faqInfo.enabled);
 
     const [faqs, setFaqs] = useState<Question[]>(faqInfo.list);
 
@@ -69,7 +70,7 @@ export default function QuestionsEdit({sendData, complete}: QuestionsEditProps) 
         const sendQuestionInfo: QuestionsInfo = {
             title,
             subtitle,
-            enabled: true,
+            enabled,
             list: faqs,
         }
         if(sendData)
@@ -86,6 +87,11 @@ export default function QuestionsEdit({sendData, complete}: QuestionsEditProps) 
     </Card.Header>
     {open &&
     <Card.Body>
+        <Text>Enabled</Text>
+        <Switch size="sm" initialChecked={faqInfo.enabled} onChange={(e) => {setEnabled(e.target.checked)}}/>
+        <Text>Previous: {faqInfo.enabled ? "true" : "false"}</Text>
+        <Spacer />
+
         <Input clearable bordered label={"FAQ Title"} placeholder={faqInfo.title}
             value={titleInput.bindings.value} onChange={titleInput.bindings.onChange}/>
         <Text>Previous: {faqInfo.title}</Text>

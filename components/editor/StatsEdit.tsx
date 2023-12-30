@@ -33,6 +33,7 @@ export default function StatEdit({sendData, complete}: StatEditProps) {
     const statInfo = useSelector((state: RootState) => state.config.stats); 
     const [open, setOpen] = useState(false);
 
+    const [enabled, setEnabled] = useState(statInfo.enabled);
 
     const [stats, setStats] = useState<Stat[]>(statInfo.list);
 
@@ -68,9 +69,9 @@ export default function StatEdit({sendData, complete}: StatEditProps) {
         }
 
         const sendStatInfo: StatInfo = {
+            enabled, 
             title,
             description,
-            enabled: true,
             list: stats,
         }
         if(sendData)
@@ -87,6 +88,11 @@ export default function StatEdit({sendData, complete}: StatEditProps) {
     </Card.Header>
     {open &&
     <Card.Body>
+        <Text>Enabled</Text>
+        <Switch size="sm" initialChecked={statInfo.enabled} onChange={(e) => {setEnabled(e.target.checked)}}/>
+        <Text>Previous: {statInfo.enabled ? "true" : "false"}</Text>
+        <Spacer />
+
         <Input clearable bordered label={"Testimonial Title"} placeholder={statInfo.title}
             value={titleInput.bindings.value} onChange={titleInput.bindings.onChange}/>
         <Text>Previous: {statInfo.title}</Text>

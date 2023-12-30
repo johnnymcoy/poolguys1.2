@@ -30,7 +30,10 @@ export const Faq = () => {
         <Text h2>{faq.subtitle}</Text>
     </Flex>
     <Flex css={{'gap': '$10','@lg': {px: '$64',}, "padding": "$12",}} direction={'column'}>
-        {faq.list.map((item, index) => (
+        {faq.list.map((item, index) => {
+            
+            if(!item.enabled){return(<div key={index}></div>)}
+            return(
             <Flex key={index} css={{gap: '$5'}} justify={'center'}>
                 <QuestionIcon />
                 <Flex direction={'column'} css={{gap: '$3', width: "100%"}}>
@@ -42,7 +45,7 @@ export const Faq = () => {
                     </Text>
                 </Flex>
             </Flex>
-        ))}
+        )})}
 
     </Flex>
     </Flex>

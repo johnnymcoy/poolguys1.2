@@ -40,8 +40,10 @@ export const Features1 = () => {
             css={{ maxWidth: '400px', color: '$accents8',}} >
             {aboutInfo.intro}
         </Text>
-        {aboutInfo.points.map((item, index) => 
-            {return(
+        {aboutInfo.pointsEnabled && aboutInfo.points.map((item, index) => 
+            {
+                if(!item.enabled){return(<div key={index}></div>)}
+                return(
             <Flex key={index} css={{py: '$10', gap: '$5',}}>
                 <BoxIcon />
                 <Flex direction={'column'}>

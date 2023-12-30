@@ -12,6 +12,7 @@ export const Features3 = () => {
     const services = useSelector((state: RootState) => state.config.services);
     // const services = config.services;
 
+    if(!services.enabled){return (<></>)}
    return (
 <>
     <Box css={{px: '$6', pb: '$14',}}>
@@ -38,7 +39,10 @@ export const Features3 = () => {
         justify={'center'}
         wrap={'wrap'}
         css={{gap: '1rem', pt: '$14',}}>
-        {services.list.map((item, index) => (
+        {services.list.map((item, index) => 
+        {
+            if(!item.enabled || item.title === ""){return (<div key={index}></div>)}
+        return(
         <CustomCard key={index} maxWidth={500}>
             <Flex css={{gap: '0.5rem'}}>
             <BoxIcon />
@@ -49,7 +53,8 @@ export const Features3 = () => {
                 </Text>
                 </Flex>
             </Flex>
-        </CustomCard>))}
+        </CustomCard>)
+        })}
 
     </Flex>
     </Box>

@@ -12,6 +12,8 @@ import TestimonialsEdit, { TestimonialsInfo } from "./TestimonialsEdit";
 import QuestionsEdit, { QuestionsInfo } from "./FaqEdit";
 import StatEdit, { StatInfo } from "./StatsEdit";
 import AboutEdit, { AboutInfo } from "./AboutEdit";
+import ThemeEdit, {ThemeInfo} from "./ThemeEdit";
+import HomeEdit, { HomeInfo } from "./HomeEdit";
 
 export default function PageEditor() {
     const { data: session } = useSession()
@@ -27,6 +29,8 @@ export default function PageEditor() {
     const contactInfo = useSelector((state: RootState) => state.config.contact);
     const faqInfo = useSelector((state: RootState) => state.config.FAQ);
     const menuInfo = useSelector((state: RootState) => state.config.menu);
+    const themeInfo = useSelector((state: RootState) => state.config.theme);
+
 
     const dispatch = useDispatch();
     
@@ -40,15 +44,19 @@ export default function PageEditor() {
         testimonials: testimonialsInfo,
         contact: contactInfo,
         FAQ: faqInfo,
-        menu: menuInfo
+        menu: menuInfo,
+        theme: themeInfo
     };
 
     const [contactLoading, setContactLoading] = useState<Status>("idle");
+    const [themeLoading, setThemeLoading] = useState<Status>("idle");
+
     const [servicesLoading, setServicesLoading] = useState<Status>("idle");
     const [testimonialsLoading, setTestimonialsLoading] = useState<Status>("idle");
     const [questionsLoading, setQuestionsLoading] = useState<Status>("idle");
     const [statsLoading, setStatsLoading] = useState<Status>("idle");
     const [aboutLoading, setAboutLoading] = useState<Status>("idle");
+    const [homeLoading, setHomeLoading] = useState<Status>("idle");
 
     function submitContactHandler(data: SiteInfo){
         setContactLoading("loading");
@@ -56,9 +64,21 @@ export default function PageEditor() {
         setTimeout(submitHandler, 2000)
     }
 
+    function submitThemeHandler(data: ThemeInfo){
+        setThemeLoading("loading");
+        sendData.theme = data;
+        setTimeout(submitHandler, 2000)
+    }
+
+
     function submitAboutHandler(data: AboutInfo){
         setAboutLoading("loading");
         sendData.about = data;
+        setTimeout(submitHandler, 2000)
+    }
+    function submitHomeHandler(data: HomeInfo){
+        setHomeLoading("loading");
+        sendData.home = data;
         setTimeout(submitHandler, 2000)
     }
 
@@ -94,6 +114,9 @@ export default function PageEditor() {
         setQuestionsLoading("complete");
         setStatsLoading("complete");
         setAboutLoading("complete");
+        setThemeLoading("complete");
+        setHomeLoading("complete");
+
         console.log(sendData);
         dispatch(postConfig(sendData))
     }
@@ -115,13 +138,14 @@ if(session){
             Admin Dashboard
     </Text>
         {/* Web stats  */}
+        <HomeEdit sendData={submitHomeHandler} complete={homeLoading}/>
         <ContactEdit sendData={submitContactHandler} complete={contactLoading} />
+        <ThemeEdit sendData={submitThemeHandler} complete={themeLoading} />
         <AboutEdit sendData={submitAboutHandler} complete={aboutLoading}/>
         <ServicesEdit sendData={submitServicesHandler} complete={servicesLoading} />
         <TestimonialsEdit sendData={submitTestimonialsHandler} complete={testimonialsLoading}/>
         <QuestionsEdit sendData={submitQuestionsHandler} complete={questionsLoading} />
         <StatEdit sendData={submitStatsHandler} complete={statsLoading} />
-    
     <Flex css={{py: '$10', gap: '2rem', px: '0', width: "100%" }}
         justify={'center'}
         wrap={'wrap'}

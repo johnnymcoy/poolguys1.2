@@ -11,19 +11,31 @@
     "logo_height": "60",
     "logo_text": "Pool Guys"
   },
+  "theme" : {
+    "bDarkMode" : false,
+    "theme_color": {
+        "primary": "#121212",
+        "background": "#fff",
+        "text": "#fff"
+      }
+  },
   "home" : {
     "title" : "Cleaning. Maintenance. Repairs.",
     "subtitle" :"We do it all",
     "description" :"Our main focus is on getting your swimming pool clean, safe and looking its best.",
+    "pointsEnabled": false,
     "points" : [
         {
-            "text" : "Cleaning & Repairs"
+            "text" : "Cleaning & Repairs",
+            "enabled" : true
         },
         {
-            "text" : "Skilled Pros"
+            "text" : "Skilled Pros",
+            "enabled" : true
         },
         {
-            "text" : "Affordable Prices"
+            "text" : "Affordable Prices",
+            "enabled" : true
         }
     ],
     "images" : {
@@ -37,52 +49,64 @@
     "title" : "About Us",
     "subtitle" : "About Us",
     "intro" : "At The Pool Guys, we excel in providing regular pool maintenance, service, repairs, and equipment installation. Our network cultivates relationships with Australia's top manufacturers and distributors to source premium equipment. By securing exceptional deals, we delight in passing the savings onto our customers, ensuring both top-tier service and cost-effectiveness. Your pool's optimum condition is our priority.",
+    "pointsEnabled": false,
     "points" : [
         {
-            "title":  "Title",
-            "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed condimentum, nisl ut aliquam lacinia, nisl nisl aliquet nisl"
+            "title":  "Unmatched Expertise in Pool Care",
+            "description" : "At The Pool Guys, our team comprises industry veterans with years of experience. We bring unmatched expertise to every project, ensuring that your pool receives the best care possible, from routine maintenance to complex repairs.",
+            "enabled" : true
         },
         {
-            "title":  "Title",
-            "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed condimentum, nisl ut aliquam lacinia, nisl nisl aliquet nisl"
+            "title":  "Utilizing Cutting-Edge Technology",
+            "description" : "We stay ahead of the curve by utilizing the latest in pool maintenance technology. Our state-of-the-art equipment and advanced techniques ensure efficient and effective service, keeping your pool in pristine condition.",
+            "enabled" : true
         },
         {
-            "title":  "Title",
-            "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed condimentum, nisl ut aliquam lacinia, nisl nisl aliquet nisl"
+            "title":  "Personalized Service Tailored to Your Needs",
+            "description" : "We understand that every pool and owner is unique. That's why we offer personalized service plans tailored to your specific needs and preferences, ensuring your complete satisfaction with every visit",
+            "enabled" : true
         }
     ]
   },
   "services" : {
+    "enabled" : true,
     "title" : "Our Services",
-    "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed condimentum, nisl ut aliquam lacinia, nisl nisl aliquet nisl, nec",
+    "description" : "A list of Services we provide",
     "list" : [
         {
             "title": "Cleaning",
-            "description" : "Regularly scheduled pool cleaning, maintenance, and servicing"
+            "description" : "Regularly scheduled pool cleaning, maintenance, and servicing",
+            "enabled" : true
         },
         {
             "title": "Green Pool clean up",
-            "description" : "Green Pool clean up"
+            "description" : "Green Pool clean up",
+            "enabled" : true
         },
         {
             "title": "One Off Cleans",
-            "description" : "One off clean ups for parties, events or house inspections"
+            "description" : "One off clean ups for parties, events or house inspections",
+            "enabled" : true
         },
         {
             "title": "Water Testing",
-            "description" : "On site water testing and balancing using professional grade photometer"
+            "description" : "On site water testing and balancing using professional grade photometer",
+            "enabled" : true
         },
         {
             "title": "Pool equipment repairs",
-            "description" : "Pool equipment repairs"
+            "description" : "Pool equipment repairs",
+            "enabled" : true
         },
         {
             "title": "Pool equipment installation and upgrades",
-            "description" : "Pool equipment installation and upgrades"
+            "description" : "Pool equipment installation and upgrades",
+            "enabled" : true
         },
         {
             "title": "Repairs on leaking solar heating",
-            "description" : "Repairs on leaking solar heating"
+            "description" : "Repairs on leaking solar heating",
+            "enabled" : true
         }
     ]
     },
@@ -93,19 +117,23 @@
         "list" : [
             {
                 "title" : "Customers",
-                "description" : "500+"
+                "description" : "500+",
+                "enabled" : true
             },
             {
                 "title" : "Reviews",
-                "description" : "10+"
+                "description" : "10+",
+                "enabled" : true
             },
             {
                 "title" : "Employees",
-                "description" : "5"
+                "description" : "5",
+                "enabled" : true
             },
             {
                 "title" : "Years Experience",
-                "description" : "15+"
+                "description" : "15+",
+                "enabled" : true
             }
         ]
     },
@@ -132,6 +160,7 @@
         
     },
   "testimonials" : {
+    "enabled" : true,
     "title" : "Testimonials",
     "subtitle" : "Hear From Our Happy Customers",
     "description" : "At The Pool Guys, we take pride in delivering exceptional pool maintenance services. But don't just take our word for it—read through the testimonials from our satisfied customers! Their positive experiences reflect our commitment to ensuring a hassle-free and enjoyable pool ownership journey. We believe in building long-term relationships with our clients, and their glowing reviews motivate us to continually elevate our services. Discover the ease of pool maintenance with The Pool Guys and join our community of happy customers!",
@@ -140,25 +169,29 @@
             "name" : "Sarah L.",
             "description" : "The Pool Guys transformed my murky pool into a crystal clear oasis. Their professionalism and attention to detail are unmatched",
             "occupation" : "",
-            "location" : "Sydney"
+            "location" : "Sydney",
+            "enabled" : true
         },
         {
             "name" : "John D.",
             "description" : "Reliable and efficient! The Pool Guys have made pool maintenance a breeze. Highly recommended!",
             "occupation" : "",
-            "location" : ""
+            "location" : "",
+            "enabled" : true
         },
         {
             "name" : "Michael S.",
             "description" : "Exceptional service at a great price. The Pool Guys are my go-to for all my pool needs",
             "occupation" : "",
-            "location" : "Melbourne"
+            "location" : "Melbourne",
+            "enabled" : true
         },
         {
             "name" : "Emily R.",
             "description" : "The Pool Guys are fantastic! They are friendly, knowledgeable, and always leave my pool sparkling clean",
             "occupation" : "",
-            "location" : "Perth"
+            "location" : "Perth",
+            "enabled" : true
         }
 
     ]
@@ -178,19 +211,23 @@
         "list" :[
             {
                 "question" : "How often should I have my pool serviced?",
-                "answer" : "For optimal water quality and cleanliness, we recommend a monthly service. However, during peak summer months, consider bi-monthly check-ups to ensure your pool remains in pristine condition"
+                "answer" : "For optimal water quality and cleanliness, we recommend a monthly service. However, during peak summer months, consider bi-monthly check-ups to ensure your pool remains in pristine condition",
+                "enabled" : true
             },
             {
                 "question" : "Do you offer emergency repair services?",
-                "answer" : "Yes! We understand unexpected issues can arise. The Pool Guys offer emergency repair services to address any urgent pool concerns"
+                "answer" : "Yes! We understand unexpected issues can arise. The Pool Guys offer emergency repair services to address any urgent pool concerns",
+                "enabled" : true
             },
             {
                 "question" : "Are the cleaning chemicals you use safe for kids and pets?",
-                "answer" : "Absolutely! We balance all the levels for optimal bather safety and comfort"
+                "answer" : "Absolutely! We balance all the levels for optimal bather safety and comfort",
+                "enabled" : true
             },
             {
                 "question" : "Can I schedule regular maintenance in advance?",
-                "answer" : "Yes, you can! We offer flexible scheduling options, allowing you to book regular maintenance sessions in advance to ensure your pool always stays in top condition"
+                "answer" : "Yes, you can! We offer flexible scheduling options, allowing you to book regular maintenance sessions in advance to ensure your pool always stays in top condition",
+                "enabled" : true
             }]
     },
     "menu" : {

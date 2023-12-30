@@ -16,8 +16,8 @@ interface ImageCompareProps {
 };
 
 export const ImageCompare: React.FC<ImageCompareProps> = ({
-        firstImgSrc = "/static/images/photos/pool-photo-02.webp",
-        secondImgSrc = "/static/images/photos/pool-photo-03.webp",
+        firstImgSrc = "/static/images/photos/pool-photo-03.webp",
+        secondImgSrc = "/static/images/photos/pool-photo-02.webp",
         separatorImg = "/static/images/compare/Icon.png",
         containerClass = "",
         cursor = "pointer",

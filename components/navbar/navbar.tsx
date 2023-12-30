@@ -1,4 +1,4 @@
-import {Button, Switch, Link, Navbar, Dropdown,  Text} from '@nextui-org/react';
+import {Button, Switch, Link, Navbar} from '@nextui-org/react';
 import React from 'react';
 import {useTheme as useNextTheme} from 'next-themes';
 import {useTheme} from '@nextui-org/react';
@@ -15,18 +15,19 @@ export const Nav = ({showCopyModal} : NavProps) => {
    const {setTheme} = useNextTheme();
    const {isDark, type} = useTheme();
    const router = useRouter();
+//    console.log(theme)
 
    const menuItems = useSelector((state: RootState) => state.config.menu.main);
-//    const menuItems = menuConfig.main;
+   const themeInfo = useSelector((state: RootState) => state.config.theme);
+
     const {phone_text, theme_switch, bPhone} = useSelector((state: RootState) => state.config.menu.nav);
-//    const {phone_text, theme_switch, bPhone} = menuConfig.nav;
+    
     const {mobile} = useSelector((state: RootState) => state.config.contact);
-//    const {mobile} = config.contact;
 
     function numberClickedHandler(e : any){
-        console.log(e.target)
+        // console.log(e.target)
         const copyText : string = e.target.innerText;
-        const numberText : string = copyText.slice(2).replaceAll(" ", "");
+        // const numberText : string = copyText.slice(2).replaceAll(" ", "");
         navigator.clipboard.writeText(mobile.replaceAll(" ", ""));
         if(showCopyModal)
         {
@@ -40,10 +41,14 @@ export const Nav = ({showCopyModal} : NavProps) => {
    return (
 <Navbar isBordered variant={"sticky"} 
     css={{ '& .nextui-navbar-container': //'overflow': 'hidden', 
+    
+    // { background: `${theme?.colors.background}`, borderBottom: 'none', boxShadow: "rgba(27, 31, 35, 0.06) 0px 1px 0px",
     { background: '$background', borderBottom: 'none', boxShadow: "rgba(27, 31, 35, 0.06) 0px 1px 0px",
         
         // position: "fixed", top: 0, width: "100%"
     },background: '$background' }}
+    // },background: `${theme?.colors.background}` }}
+
     >
     <Navbar.Brand>
         <Navbar.Toggle aria-label="toggle navigation" showIn="sm" />
@@ -78,7 +83,7 @@ export const Nav = ({showCopyModal} : NavProps) => {
         ))}
 
         {/* Light/Dark mode switch */}
-        {theme_switch && 
+        {themeInfo.bDarkMode && 
         <Navbar.CollapseItem  
             css={{fontSize: "1.5rem", justifyContent: "center", maxHeight: "80vh",textAlign: "center", padding: "5vh" }}
         >
@@ -102,7 +107,7 @@ export const Nav = ({showCopyModal} : NavProps) => {
         </Navbar.Content>}
 
         {/* Light/Dark mode switch */}
-        {theme_switch && 
+        {themeInfo.bDarkMode && 
         <Navbar.Item hideIn={'xs'} id={"LightDarkSwitch"}>
             <Switch checked={isDark} onChange={(e: any) => setTheme(e.target.checked ? 'dark' : 'light')}/>
         </Navbar.Item>}

@@ -15,6 +15,7 @@ export interface AboutInfo {
     title: string;
     subtitle: string;
     intro: string;
+    pointsEnabled: boolean;
     points : About[];
 }
 
@@ -35,6 +36,8 @@ export default function AboutEdit({sendData, complete}: AboutEditProps) {
     const titleInput = useInput("");
     const subtitleInput = useInput("");
     const introInput = useInput("");
+
+    const [enabled, setEnabled] = useState(aboutInfo.pointsEnabled);
 
     const [points, setPoints] = useState<About[]>(aboutInfo.points);
 
@@ -72,7 +75,8 @@ export default function AboutEdit({sendData, complete}: AboutEditProps) {
             title,
             subtitle,
             intro,
-            points: points
+            points: points,
+            pointsEnabled: enabled,
         }
         if(sendData)
         {
@@ -87,15 +91,21 @@ export default function AboutEdit({sendData, complete}: AboutEditProps) {
         <Text h3 css={{textAlign: "center", width: "100%"}}>About Page</Text>
     </Card.Header>
     {open && <Card.Body>
-        <Input clearable bordered label={"Services Title"} placeholder={aboutInfo.title}
+        <Input clearable bordered label={"About Title"} placeholder={aboutInfo.title}
             value={titleInput.bindings.value} onChange={titleInput.bindings.onChange}/>
         <Text>Previous: {aboutInfo.title}</Text>
-        <Input clearable bordered label={"Services Subtitle"} placeholder={aboutInfo.subtitle}
+        <Input clearable bordered label={"About Subtitle"} placeholder={aboutInfo.subtitle}
             value={subtitleInput.bindings.value} onChange={subtitleInput.bindings.onChange}/>
         <Text>Previous: {aboutInfo.subtitle}</Text>
-        <Input clearable bordered label={"Services Intro"} placeholder={aboutInfo.intro}
+        <Input clearable bordered label={"About Intro"} placeholder={aboutInfo.intro}
             value={introInput.bindings.value} onChange={introInput.bindings.onChange}/>
         <Text>Previous: {aboutInfo.intro}</Text>
+        <Spacer />
+        <Spacer />
+        <Text>Points Enabled</Text>
+        <Switch size="sm" initialChecked={aboutInfo.pointsEnabled} onChange={(e) => {setEnabled(e.target.checked)}}/>
+        <Text>Previous: {aboutInfo.pointsEnabled ? "true" : "false"}</Text>
+        <Spacer />
 
     {aboutInfo.points.map((item, index) =>
         <StatsInput key={index} stat={item} index={index} onChange={setPointsHandler} />

@@ -1,5 +1,5 @@
 import { Box } from "@/components/styles/box";
-import { FormElement, Input, Text, useInput } from "@nextui-org/react";
+import { Button, FormElement, Input, Text, useInput } from "@nextui-org/react";
 import { ChangeEvent, useEffect, useState } from "react";
 
 export interface Service {
@@ -58,5 +58,6 @@ export default function ServicesInput({service, index, onChange, bHide}: Service
     <Input clearable bordered label={"Description"} placeholder={service.description} css={{width: "100%"}}
         value={serviceData?.description} onChange={(e: ChangeEvent<FormElement>) => changeHandler(e, "description")}/>
     <Text>Previous: {service.description}</Text>
+    {/* <Button size="xs">Remove</Button> */}
 </Box>
 )}

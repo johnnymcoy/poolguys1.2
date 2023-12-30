@@ -50,8 +50,8 @@ export const BeforeAfter = () => {
                 </Grid.Container>
             }>
             <ImageCompare   
-                        firstImgSrc={item.beforeSrc}
-                        secondImgSrc={item.afterSrc}
+                        firstImgSrc={item.afterSrc}
+                        secondImgSrc={item.beforeSrc}
                         />
         </CustomCard>)}
     </Flex>

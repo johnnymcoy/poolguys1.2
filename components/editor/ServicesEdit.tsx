@@ -14,6 +14,7 @@ export interface ServicesInfo {
     title: string;
     description: string;
     list : Service[];
+    enabled: boolean;
 }
 
 export type Status = ("idle" | "loading" | "complete" | "failed")
@@ -32,6 +33,9 @@ export default function ServicesEdit({sendData, complete}: ServicesEditProps) {
 
     const titleInput = useInput("");
     const descriptionInput = useInput("");
+
+    const [enabled, setEnabled] = useState(servicesInfo.enabled);
+
 
     const [services, setServices] = useState<Service[]>(servicesInfo.list);
 
@@ -63,7 +67,8 @@ export default function ServicesEdit({sendData, complete}: ServicesEditProps) {
         const sendServicesInfo: ServicesInfo = {
             title,
             description,
-            list: services
+            list: services,
+            enabled
         }
         if(sendData)
         {
@@ -78,6 +83,10 @@ export default function ServicesEdit({sendData, complete}: ServicesEditProps) {
         <Text h3 css={{textAlign: "center", width: "100%"}}>Services Page</Text>
     </Card.Header>
     {open && <Card.Body>
+        <Text>Enabled</Text>
+        <Switch size="sm" initialChecked={servicesInfo.enabled} onChange={(e) => {setEnabled(e.target.checked)}}/>
+        <Text>Previous: {servicesInfo.enabled ? "true" : "false"}</Text>
+        <Spacer />
         <Input clearable bordered label={"Services Title"} placeholder={servicesInfo.title}
             value={titleInput.bindings.value} onChange={titleInput.bindings.onChange}/>
         <Text>Previous: {servicesInfo.title}</Text>
